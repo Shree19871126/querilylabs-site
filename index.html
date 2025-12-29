@@ -82,19 +82,18 @@
       .footer { margin-top: 40px; color: var(--muted); font-size: 13px; display: flex; gap: 12px; flex-wrap: wrap; }
       .muted { color: var(--muted); }
       .hr { height: 1px; background: var(--border); margin: 26px 0; }
-      .formRow { display: grid; grid-template-columns: 1fr; gap: 10px; }
-      @media (min-width: 820px) { .formRow { grid-template-columns: 1fr 1fr; } }
-      input, textarea {
-        width: 100%;
+      .contactBox {
         border: 1px solid var(--border);
-        background: rgba(0,0,0,0.18);
-        color: var(--text);
-        padding: 10px 12px;
-        border-radius: 12px;
-        outline: none;
+        background: var(--card);
+        border-radius: 18px;
+        padding: 20px;
+        font-size: 15px;
+        line-height: 1.6;
       }
-      textarea { min-height: 110px; resize: vertical; }
-      .note { font-size: 12px; color: var(--muted); margin-top: 10px; }
+      .email {
+        font-weight: 600;
+        color: var(--text);
+      }
     </style>
   </head>
   <body>
@@ -112,8 +111,8 @@
         <div class="kicker">Product studio • Pilot-ready systems • Built fast, shipped clean</div>
         <h1>Building software for campus communities and modern communication.</h1>
         <p class="sub">
-          Querily Labs builds product-first platforms that help colleges and communities coordinate, communicate,
-          and scale — with reliable infrastructure and privacy-minded design.
+          Querily Labs builds product-first platforms that help colleges and communities coordinate,
+          communicate, and scale — with reliable infrastructure and privacy-minded design.
         </p>
         <div class="ctaRow">
           <a class="btn primary" href="#contact">Request a demo</a>
@@ -167,30 +166,16 @@
 
       <section id="contact">
         <div class="sectionTitle">Contact</div>
-        <div class="grid">
-          <div class="card">
-            <p class="muted">
-              Email: <strong>contact@querilylabs.com</strong> (replace with your real inbox)
-              <br />
-              Or send a message using this form (wire to Formspree / Netlify forms later).
-            </p>
-
-            <form onsubmit="event.preventDefault(); alert('Form is a placeholder. Hook this to Formspree/Netlify Forms.');">
-              <div class="formRow">
-                <input placeholder="Name" required />
-                <input placeholder="College / Company" required />
-              </div>
-              <div style="height:10px"></div>
-              <input placeholder="Email" type="email" required />
-              <div style="height:10px"></div>
-              <textarea placeholder="What do you want to set up / demo?" required></textarea>
-              <div style="height:12px"></div>
-              <button class="btn primary" type="submit">Send</button>
-              <div class="note">
-                Note: Products labeled “In development” are not publicly launched unless explicitly stated.
-              </div>
-            </form>
-          </div>
+        <div class="contactBox">
+          <p class="muted">
+            For pilots, demos, or institutional inquiries, reach us at:
+          </p>
+          <p class="email">
+            📩 contact@querilylabs.com
+          </p>
+          <p class="muted">
+            We typically respond within 1–2 business days.
+          </p>
         </div>
       </section>
 
