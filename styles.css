@@ -14,7 +14,7 @@
   /* NAV sizing */
   --nav-h: 84px;          /* header height */
   --logo-h: 48px;         /* logo height cap (keeps nav intact) */
-  --logo-w: 180px;        /* optional: makes logo feel larger without taller header */
+  --logo-w: 260px;        /* optional: makes logo feel larger without taller header */
 }
 
 *{box-sizing:border-box}
