@@ -10,10 +10,16 @@
 
   --shadow:0 16px 40px rgba(10,10,10,.08);
   --radius:18px;
+
+  /* NAV sizing */
+  --nav-h: 84px;          /* header height */
+  --logo-h: 48px;         /* logo height cap (keeps nav intact) */
+  --logo-w: 180px;        /* optional: makes logo feel larger without taller header */
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
+
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -23,38 +29,57 @@ body{
 
 a{color:inherit;text-decoration:none}
 
-.wrap{max-width:1100px;margin:0 auto;padding:28px 18px 72px}
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:28px 18px 72px;
+}
 
 /* NAV */
 .nav{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:16px 0;
+
+  height: var(--nav-h);
+  padding: 0; /* height controls it now */
   position:sticky;
   top:0;
+
   background: rgba(255,255,255,.85);
   backdrop-filter: blur(10px);
   border-bottom:1px solid rgba(10,10,10,.06);
   z-index:10;
 }
+
+/* Brand (logo + text) */
 .brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
   font-weight:800;
   letter-spacing:.2px;
+  white-space: nowrap;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: 800;
-  letter-spacing: .2px;
-}
-
-.brand img {
-  height: 250px;      /* adjust if needed */
+.brand img{
+  /* IMPORTANT: prevents header from growing */
+  max-height: var(--logo-h);
+  height: auto;
   width: auto;
-  display: block;
+
+  /* Optional: makes logo feel bigger without affecting height */
+  max-width: var(--logo-w);
+
+  display:block;
+  object-fit:contain;
+}
+
+/* Nav links */
+.nav nav{
+  display:flex;
+  align-items:center;
+  gap: 0;
 }
 
 .nav nav a{
@@ -66,6 +91,7 @@ a{color:inherit;text-decoration:none}
 
 /* HERO */
 .hero{padding:56px 0 22px}
+
 .kicker{
   display:inline-flex;
   align-items:center;
@@ -78,12 +104,14 @@ a{color:inherit;text-decoration:none}
   font-size:13px;
   font-weight:700;
 }
+
 h1{
   font-size:46px;
   line-height:1.12;
   margin:16px 0 10px;
   max-width:900px;
 }
+
 .sub{
   color: rgba(10,10,10,.70);
   font-size:16px;
@@ -92,7 +120,13 @@ h1{
 }
 
 /* BUTTONS */
-.ctaRow{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+.ctaRow{
+  display:flex;
+  gap:12px;
+  margin-top:18px;
+  flex-wrap:wrap;
+}
+
 .btn{
   display:inline-flex;
   align-items:center;
@@ -105,7 +139,11 @@ h1{
   color: var(--ink);
   transition: transform .15s ease, border-color .15s ease;
 }
-.btn:hover{transform:translateY(-1px);border-color:rgba(94,23,235,.45)}
+.btn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(94,23,235,.45);
+}
+
 .btn.primary{
   background: var(--violet);
   border:1px solid var(--violet);
@@ -113,13 +151,14 @@ h1{
 }
 .btn.primary:hover{transform:translateY(-1px)}
 
-/* GRID + CARDS (white panel with black frame) */
+/* GRID + CARDS */
 .grid{
   display:grid;
   grid-template-columns:repeat(12,1fr);
   gap:16px;
   margin-top:26px;
 }
+
 .card{
   grid-column:span 12;
   background: var(--panel);
@@ -128,11 +167,15 @@ h1{
   padding:18px;
   box-shadow: var(--shadow);
 }
+
 @media(min-width:820px){
   .card.half{grid-column:span 6}
 }
+
 .card h3{margin:0 0 8px;font-size:18px}
+
 .muted{color: rgba(10,10,10,.68)}
+
 .tag{
   display:inline-block;
   font-size:12px;
@@ -146,11 +189,24 @@ h1{
 }
 
 /* Lists */
-ul{margin:10px 0 0 18px;color:rgba(10,10,10,.70);line-height:1.6}
+ul{
+  margin:10px 0 0 18px;
+  color:rgba(10,10,10,.70);
+  line-height:1.6;
+}
 
 /* Section */
-.sectionTitle{margin:34px 0 10px;font-size:18px;font-weight:900}
-.hr{height:1px;background:rgba(10,10,10,.12);margin:28px 0}
+.sectionTitle{
+  margin:34px 0 10px;
+  font-size:18px;
+  font-weight:900;
+}
+
+.hr{
+  height:1px;
+  background:rgba(10,10,10,.12);
+  margin:28px 0;
+}
 
 /* Contact box */
 .contactBox{
@@ -161,6 +217,7 @@ ul{margin:10px 0 0 18px;color:rgba(10,10,10,.70);line-height:1.6}
   box-shadow: var(--shadow);
   max-width:560px;
 }
+
 .email{
   font-weight:900;
   color: var(--violet);
@@ -178,7 +235,14 @@ ul{margin:10px 0 0 18px;color:rgba(10,10,10,.70);line-height:1.6}
 
 /* Mobile tightening */
 @media(max-width:520px){
+  :root{
+    --nav-h: 72px;
+    --logo-h: 36px;
+    --logo-w: 140px;
+  }
+
   h1{font-size:34px}
   .wrap{padding:18px 14px 56px}
+
   .nav nav a{margin-left:12px}
 }
