@@ -63,17 +63,18 @@ a{color:inherit;text-decoration:none}
 }
 
 .brand img{
-  /* IMPORTANT: prevents header from growing */
-  max-height: var(--logo-h);
+  max-height: 44px;        /* keeps header intact */
   height: auto;
   width: auto;
 
-  /* Optional: makes logo feel bigger without affecting height */
-  max-width: var(--logo-w);
+  max-width: 360px;       /* 👈 THIS is the key change */
+  transform: scale(1.25); /* 👈 optical boost without layout break */
 
+  transform-origin: left center;
+  object-fit: contain;
   display:block;
-  object-fit:contain;
 }
+
 
 /* Nav links */
 .nav nav{
