@@ -4,27 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Editorial Policy — Querily Labs</title>
+  <meta name="description" content="Editorial policy for Querily Labs articles and announcements." />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <div class="wrap">
-    <h1>Editorial Policy</h1>
+    <header class="nav">
+      <div class="brand">Querily Labs</div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/articles.html">Articles</a>
+        <a href="/press.html">Press</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </header>
 
-    <p class="muted">
-      Querily Labs publishes original articles, analysis, and announcements
-      related to institutional communication, community systems, and product development.
-    </p>
+    <section class="hero">
+      <div class="kicker">Transparency</div>
+      <h1>Editorial Policy</h1>
+      <p class="sub">
+        Querily Labs publishes original articles, analysis, and announcements related to
+        institutional communication, community systems, and product development.
+      </p>
+    </section>
 
-    <ul>
-      <li>All articles are original and written in-house.</li>
-      <li>Content is informational and analytical, not promotional.</li>
-      <li>Sources and references are cited where applicable.</li>
-      <li>Corrections are issued transparently.</li>
-      <li>No sponsored or paid content is published.</li>
-    </ul>
+    <section class="grid">
+      <div class="card">
+        <div class="tag">Standards</div>
+        <h3>Our publishing standards</h3>
+        <ul>
+          <li>All articles are original and written in-house.</li>
+          <li>Content is informational and analytical, not promotional.</li>
+          <li>Sources and references are cited where applicable.</li>
+          <li>Corrections are issued transparently when needed.</li>
+          <li>No sponsored or paid content is published.</li>
+        </ul>
+        <p class="muted" style="margin-top:12px;">
+          Editorial inquiries: <span class="email">contact@querilylabs.com</span>
+        </p>
+      </div>
+    </section>
 
-    <p class="muted">
-      For editorial inquiries: contact@querilylabs.com
-    </p>
+    <footer class="footer">
+      <div>© <span id="y"></span> Querily Labs</div>
+    </footer>
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

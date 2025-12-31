@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Press — Querily Labs</title>
+  <meta name="description" content="Press and media resources for Querily Labs." />
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
   <div class="wrap">
@@ -13,38 +15,56 @@
         <a href="/">Home</a>
         <a href="/about.html">About</a>
         <a href="/articles.html">Articles</a>
+        <a href="/products.html">Products</a>
         <a href="/contact.html">Contact</a>
       </nav>
     </header>
 
     <section class="hero">
+      <div class="kicker">Press room</div>
       <h1>Press & Media</h1>
       <p class="sub">
-        Information and resources for journalists, editors, and media partners.
+        Resources for journalists, editors, and institutional partners.
       </p>
     </section>
 
-    <section class="card">
-      <h3>Company boilerplate</h3>
-      <p class="muted">
-        Querily Labs is a product studio building identity-first software for
-        trusted communication inside communities and institutions.
-        Its flagship product, Qincept, is designed for campuses and verified
-        organizations.
-      </p>
-    </section>
+    <section class="grid">
+      <div class="card">
+        <div class="tag">Boilerplate</div>
+        <h3>Company overview</h3>
+        <p class="muted">
+          Querily Labs is a product studio building identity-first software for trusted communication
+          inside communities and institutions. Its flagship product, Qincept, is designed for campuses
+          and verified organizations.
+        </p>
+      </div>
 
-    <section class="card">
-      <h3>Media inquiries</h3>
-      <p class="muted">
-        📩 press@querilylabs.com<br />
-        📩 contact@querilylabs.com
-      </p>
+      <div class="card half">
+        <div class="tag">Inquiries</div>
+        <h3>Media contact</h3>
+        <p class="muted">For press inquiries:</p>
+        <p class="email">contact@querilylabs.com</p>
+        <p class="muted">If you prefer a dedicated mailbox later, we can add press@.</p>
+      </div>
+
+      <div class="card half">
+        <div class="tag">Policy</div>
+        <h3>Editorial policy</h3>
+        <p class="muted">Publishing standards for our newsroom:</p>
+        <div class="ctaRow">
+          <a class="btn primary" href="/editorial-policy.html">View policy</a>
+          <a class="btn" href="/articles.html">Go to articles</a>
+        </div>
+      </div>
     </section>
 
     <footer class="footer">
       <div>© <span id="y"></span> Querily Labs</div>
     </footer>
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
