@@ -1,1 +1,13 @@
-.vercel
+# dependencies
+node_modules/
+
+# environment variables
+.env
+
+# build output
+dist/
+.vercel/
+
+# OS / editor files
+.DS_Store
+.vscode/
