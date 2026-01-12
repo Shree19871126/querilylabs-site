@@ -4,25 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Querily Labs — Identity-first software for trusted communication</title>
+  <meta name="description" content="Querily Labs builds identity-first software for trusted communication inside campuses and institutions." />
 
-  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/styles.css" />
 </head>
-<body>
 
+<body>
   <header class="nav">
     <div class="nav-inner">
       <a class="brand" href="/">
-        <!-- Use your logo file here -->
         <img src="/assets/logo/querily-logo.jpg" alt="Querily Labs" />
       </a>
 
       <nav class="nav-links">
-        <a class="active" href="/products.html">Products</a>
+        <a href="/products.html">Products</a>
         <a href="/about.html">About</a>
         <a href="/articles.html">Articles</a>
         <a href="/press.html">Press</a>
@@ -37,89 +36,85 @@
   </header>
 
   <main class="wrap">
-
     <section class="hero">
       <div class="kicker">Product studio • Pilot-ready systems • Built clean</div>
       <h1>Building identity-first software for trusted communication.</h1>
-      <p>
+      <p class="sub">
         Querily Labs builds platforms that help campuses and institutions communicate clearly,
         coordinate reliably, and act with confidence — with roles, governance, and verified identity.
       </p>
 
-      <div class="hero-actions">
+      <div class="ctaRow">
         <a class="btn primary" href="/contact.html">Request a demo</a>
         <a class="btn" href="/products.html">See products</a>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>Why identity-first matters</h2>
-          <p>Trusted communities need more than chat — they need roles, accountability, and clear boundaries.</p>
-        </div>
-      </div>
+      <h2>Why identity-first matters</h2>
+      <p>Trusted communities need more than chat — they need roles, accountability, and clear boundaries.</p>
 
       <div class="grid">
-        <div class="card col-4">
-          <div class="pill">Trust</div>
+        <div class="card half">
+          <div class="tag">Trust</div>
           <h3>Verified roles</h3>
-          <p>Make ownership and permissions explicit — so messages carry the right authority.</p>
+          <p class="muted">Make ownership and permissions explicit — so messages carry the right authority.</p>
         </div>
 
-        <div class="card col-4">
-          <div class="pill">Governance</div>
+        <div class="card half">
+          <div class="tag">Governance</div>
           <h3>Clear boundaries</h3>
-          <p>Channels, policies, and structured workflows reduce confusion and misinformation.</p>
+          <p class="muted">Channels, policies, and structured workflows reduce confusion and misinformation.</p>
         </div>
 
-        <div class="card col-4">
-          <div class="pill">Reliability</div>
+        <div class="card full">
+          <div class="tag">Reliability</div>
           <h3>Coordination that sticks</h3>
-          <p>Secondary communication layer that complements existing primary tools.</p>
+          <p class="muted">Secondary communication layer that complements existing primary tools.</p>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-head">
-        <div>
-          <h2>Products</h2>
-          <p>Flagship platform + supporting lab systems designed for institutional pilots.</p>
-        </div>
-      </div>
+      <h2>Products</h2>
+      <p>Flagship platform + supporting lab systems designed for institutional pilots.</p>
 
       <div class="grid">
-        <article class="card col-7">
-          <div class="pill">Flagship product</div>
+        <article class="card half">
+          <div class="tag">Flagship product</div>
           <h3>Qincept</h3>
-          <p>
-            An identity-first communication platform for campuses, departments, clubs,
-            and verified communities.
+          <p class="muted">
+            An identity-first communication platform for campuses, departments, clubs, and verified communities.
           </p>
-          <ul class="bullets">
+          <ul>
             <li>Verified roles and ownership</li>
             <li>Governed group communication</li>
             <li>Institutional workflows (jobs, updates, coordination)</li>
           </ul>
-          <a class="more" href="/products.html">Explore Qincept →</a>
+          <a class="read-more" href="/products.html">Explore Qincept →</a>
         </article>
 
-        <article class="card col-5">
-          <div class="pill">Labs</div>
+        <article class="card half">
+          <div class="tag">Labs</div>
           <h3>In development</h3>
-          <p>Supporting systems that strengthen trust and operations.</p>
-          <ul class="bullets">
+          <p class="muted">Supporting systems that strengthen trust and operations.</p>
+          <ul>
             <li>Messaging infrastructure + admin tooling</li>
             <li>Campus job boards + opportunity workflows</li>
             <li>Secure identity & access pilots</li>
           </ul>
-          <a class="more" href="/products.html">See roadmap →</a>
+          <a class="read-more" href="/products.html">See roadmap →</a>
         </article>
       </div>
     </section>
 
+    <footer class="footer">
+      <div>© <span id="y"></span> Querily Labs</div>
+    </footer>
   </main>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
-
