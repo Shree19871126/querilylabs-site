@@ -1,249 +1,231 @@
 :root{
   --bg:#ffffff;
-  --ink:#0a0a0a;
-  --muted:#4b5563;
-  --border:rgba(10,10,10,.14);
-  --panel:#ffffff;
+  --surface:#ffffff;
+  --surface-2:#fbfbff;
+  --ink:#0b0b10;
+  --muted:#5b6472;
+  --border:rgba(10,10,10,.10);
 
   --violet:#5e17eb;
+  --violet-2:#7c3aed;
   --violet-soft:rgba(94,23,235,.10);
 
-  --shadow:0 16px 40px rgba(10,10,10,.08);
   --radius:18px;
-
-  /* NAV sizing */
-  --nav-h: 84px;          /* header height */
-  --logo-h: 48px;         /* logo height cap (keeps nav intact) */
-  --logo-w: 260px;        /* optional: makes logo feel larger without taller header */
+  --radius-lg:26px;
+  --shadow: 0 18px 50px rgba(10,10,10,.08);
+  --shadow-soft: 0 10px 24px rgba(10,10,10,.06);
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
-
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: var(--bg);
   color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
 
-.wrap{
-  max-width:1100px;
-  margin:0 auto;
-  padding:28px 18px 72px;
-}
+.wrap{max-width:1120px;margin:0 auto;padding:26px 18px 84px}
 
 /* NAV */
 .nav{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  height: var(--nav-h);
-  padding: 0; /* height controls it now */
-  position:sticky;
-  top:0;
-
-  background: rgba(255,255,255,.85);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,.78);
   backdrop-filter: blur(10px);
-  border-bottom:1px solid rgba(10,10,10,.06);
-  z-index:10;
+  border-bottom: 1px solid var(--border);
 }
-
-/* Brand (logo + text) */
+.nav-inner{
+  max-width:1120px;
+  margin:0 auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
-  font-weight:800;
-  letter-spacing:.2px;
-  white-space: nowrap;
+  gap:10px;
+  min-width: 160px;
 }
-
 .brand img{
-  max-height: 44px;        /* keeps header intact */
-  height: auto;
+  height: 36px;      /* adjust logo size */
   width: auto;
-
-  max-width: 360px;       /* 👈 THIS is the key change */
-  transform: scale(1.25); /* 👈 optical boost without layout break */
-
-  transform-origin: left center;
-  object-fit: contain;
-  display:block;
+}
+.brand span{
+  font-weight:700;
+  letter-spacing:-.02em;
 }
 
-
-/* Nav links */
-.nav nav{
+.nav-links{
   display:flex;
   align-items:center;
-  gap: 0;
-}
-
-.nav nav a{
-  margin-left:16px;
-  color: rgba(10,10,10,.72);
+  gap:18px;
+  color: var(--muted);
   font-weight:600;
+  font-size:14px;
 }
-.nav nav a:hover{color:var(--violet)}
-
-/* HERO */
-.hero{padding:56px 0 22px}
-
-.kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  padding:8px 12px;
-  border-radius:999px;
-  background: var(--violet-soft);
-  border:1px solid rgba(94,23,235,.18);
-  color: var(--violet);
-  font-size:13px;
-  font-weight:700;
-}
-
-h1{
-  font-size:46px;
-  line-height:1.12;
-  margin:16px 0 10px;
-  max-width:900px;
-}
-
-.sub{
-  color: rgba(10,10,10,.70);
-  font-size:16px;
-  line-height:1.65;
-  max-width:740px;
-}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--violet)}
+.nav-cta{display:flex;gap:10px;align-items:center}
 
 /* BUTTONS */
-.ctaRow{
-  display:flex;
-  gap:12px;
-  margin-top:18px;
-  flex-wrap:wrap;
-}
-
 .btn{
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  padding:12px 16px;
-  border-radius:12px;
-  font-weight:800;
-  border:1px solid rgba(10,10,10,.22);
-  background: transparent;
-  color: var(--ink);
-  transition: transform .15s ease, border-color .15s ease;
+  justify-content:center;
+  height:42px;
+  padding:0 16px;
+  border-radius:999px;
+  font-weight:700;
+  border:1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
 }
-.btn:hover{
-  transform:translateY(-1px);
-  border-color:rgba(94,23,235,.45);
+.btn:hover{transform: translateY(-1px)}
+.btn.primary{
+  border-color: transparent;
+  color:#fff;
+  background: linear-gradient(135deg, var(--violet), var(--violet-2));
+  box-shadow: 0 16px 40px rgba(94,23,235,.20);
+}
+.btn.ghost{
+  background: transparent;
+  box-shadow:none;
 }
 
-.btn.primary{
-  background: var(--violet);
-  border:1px solid var(--violet);
-  color:#fff;
+/* HERO */
+.hero{
+  margin-top: 18px;
+  border-radius: var(--radius-lg);
+  padding: 44px 32px;
+  background:
+    radial-gradient(1200px 600px at 10% 10%, rgba(94,23,235,.14), transparent 55%),
+    radial-gradient(900px 500px at 80% 0%, rgba(124,58,237,.10), transparent 60%),
+    linear-gradient(180deg, var(--surface-2), #fff);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
-.btn.primary:hover{transform:translateY(-1px)}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13px;
+  color: var(--violet);
+  background: var(--violet-soft);
+  border: 1px solid rgba(94,23,235,.18);
+}
+.hero h1{
+  margin: 14px 0 10px;
+  letter-spacing:-.04em;
+  line-height: 1.04;
+  font-size: clamp(34px, 4.6vw, 56px);
+}
+.hero p{
+  margin:0;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.hero-actions{
+  margin-top: 18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+/* SECTION */
+.section{
+  margin-top: 26px;
+}
+.section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin: 18px 0 12px;
+}
+.section-head h2{
+  margin:0;
+  letter-spacing:-.03em;
+  font-size: 22px;
+}
+.section-head p{
+  margin:0;
+  color: var(--muted);
+  max-width: 60ch;
+  font-size: 14px;
+  line-height: 1.6;
+}
 
 /* GRID + CARDS */
 .grid{
   display:grid;
-  grid-template-columns:repeat(12,1fr);
-  gap:16px;
-  margin-top:26px;
+  gap:14px;
+  grid-template-columns: repeat(12, 1fr);
 }
-
 .card{
-  grid-column:span 12;
-  background: var(--panel);
-  border:2px solid rgba(10,10,10,.20);
+  border:1px solid var(--border);
   border-radius: var(--radius);
-  padding:18px;
-  box-shadow: var(--shadow);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  padding: 18px;
 }
-
-@media(min-width:820px){
-  .card.half{grid-column:span 6}
-}
-
-.card h3{margin:0 0 8px;font-size:18px}
-
-.muted{color: rgba(10,10,10,.68)}
-
-.tag{
-  display:inline-block;
+.card:hover{transform: translateY(-2px)}
+.card .pill{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
   font-size:12px;
   font-weight:800;
   color: var(--violet);
   background: var(--violet-soft);
-  border:1px solid rgba(94,23,235,.20);
-  padding:5px 10px;
-  border-radius:999px;
-  margin-bottom:10px;
+  border: 1px solid rgba(94,23,235,.18);
 }
-
-/* Lists */
-ul{
-  margin:10px 0 0 18px;
-  color:rgba(10,10,10,.70);
-  line-height:1.6;
+.card h3{
+  margin:10px 0 8px;
+  letter-spacing:-.02em;
 }
-
-/* Section */
-.sectionTitle{
-  margin:34px 0 10px;
-  font-size:18px;
-  font-weight:900;
+.card p{
+  margin:0 0 10px;
+  color: var(--muted);
+  line-height: 1.65;
 }
-
-.hr{
-  height:1px;
-  background:rgba(10,10,10,.12);
-  margin:28px 0;
+.bullets{
+  margin: 10px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
 }
-
-/* Contact box */
-.contactBox{
-  border:2px solid rgba(10,10,10,.20);
-  background: var(--panel);
-  border-radius: var(--radius);
-  padding:20px;
-  box-shadow: var(--shadow);
-  max-width:560px;
-}
-
-.email{
-  font-weight:900;
+.bullets li{margin: 6px 0}
+.card a.more{
+  display:inline-flex;
+  margin-top: 12px;
+  font-weight:800;
   color: var(--violet);
 }
+.card a.more:hover{text-decoration: underline}
 
-/* Footer */
-.footer{
-  margin-top:44px;
-  color: rgba(10,10,10,.55);
-  font-size:13px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
+/* LAYOUT SPANS */
+.col-7{grid-column: span 7;}
+.col-5{grid-column: span 5;}
+.col-4{grid-column: span 4;}
+.col-6{grid-column: span 6;}
 
-/* Mobile tightening */
-@media(max-width:520px){
-  :root{
-    --nav-h: 72px;
-    --logo-h: 36px;
-    --logo-w: 140px;
-  }
-
-  h1{font-size:34px}
-  .wrap{padding:18px 14px 56px}
-
-  .nav nav a{margin-left:12px}
+@media (max-width: 860px){
+  .hero{padding: 30px 18px;}
+  .nav-links{display:none;} /* mobile simple nav */
+  .col-7,.col-5,.col-6,.col-4{grid-column: span 12;}
 }
