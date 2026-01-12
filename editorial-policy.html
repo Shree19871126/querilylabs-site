@@ -5,31 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Editorial Policy — Querily Labs</title>
   <meta name="description" content="Editorial policy for Querily Labs articles and announcements." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <div class="brand">Querily Labs</div>
-      <nav>
-        <a href="/">Home</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <img src="/assets/querily-logo.png" alt="Querily Labs" />
+      </a>
+
+      <nav class="nav-links">
+        <a href="/products.html">Products</a>
+        <a href="/about.html">About</a>
         <a href="/articles.html">Articles</a>
         <a href="/press.html">Press</a>
         <a href="/contact.html">Contact</a>
       </nav>
-    </header>
 
+      <div class="nav-cta">
+        <a class="btn ghost" href="/products.html">See products</a>
+        <a class="btn primary" href="/contact.html">Request a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
     <section class="hero">
       <div class="kicker">Transparency</div>
       <h1>Editorial Policy</h1>
       <p class="sub">
-        Querily Labs publishes original articles, analysis, and announcements related to
-        institutional communication, community systems, and product development.
+        Querily Labs publishes original articles, analysis, and announcements related to institutional communication,
+        identity, community systems, and product development.
       </p>
+      <div class="ctaRow">
+        <a class="btn" href="/articles.html">Back to articles</a>
+        <a class="btn primary" href="/press.html">Press room</a>
+      </div>
     </section>
 
     <section class="grid">
-      <div class="card">
+      <div class="card full">
         <div class="tag">Standards</div>
         <h3>Our publishing standards</h3>
         <ul>
@@ -39,6 +60,7 @@
           <li>Corrections are issued transparently when needed.</li>
           <li>No sponsored or paid content is published.</li>
         </ul>
+
         <p class="muted" style="margin-top:12px;">
           Editorial inquiries: <span class="email">contact@querilylabs.com</span>
         </p>
@@ -48,7 +70,7 @@
     <footer class="footer">
       <div>© <span id="y"></span> Querily Labs</div>
     </footer>
-  </div>
+  </main>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();

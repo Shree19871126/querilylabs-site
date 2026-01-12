@@ -5,27 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Querily Labs</title>
   <meta name="description" content="Contact Querily Labs for pilots, demos, and institutional inquiries." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <div class="brand">Querily Labs</div>
-      <nav>
-        <a href="/">Home</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <img src="/assets/querily-logo.png" alt="Querily Labs" />
+      </a>
+
+      <nav class="nav-links">
         <a href="/products.html">Products</a>
         <a href="/about.html">About</a>
         <a href="/articles.html">Articles</a>
         <a href="/press.html">Press</a>
+        <a class="active" href="/contact.html">Contact</a>
       </nav>
-    </header>
 
+      <div class="nav-cta">
+        <a class="btn ghost" href="/products.html">See products</a>
+        <a class="btn primary" href="/contact.html">Request a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
     <section class="hero">
       <div class="kicker">Demos • Pilots • Institutional</div>
       <h1>Contact</h1>
-      <p class="sub">
-        For pilots, demos, or institutional inquiries, reach us at:
-      </p>
+      <p class="sub">For pilots, demos, or institutional inquiries, reach us at:</p>
       <div class="ctaRow">
         <a class="btn primary" href="mailto:contact@querilylabs.com">Email us</a>
         <a class="btn" href="/press.html">Press room</a>
@@ -33,7 +47,7 @@
     </section>
 
     <section class="grid">
-      <div class="card">
+      <div class="card full">
         <div class="tag">Email</div>
         <h3>contact@querilylabs.com</h3>
         <p class="muted">We typically respond within 1–2 business days.</p>
@@ -43,7 +57,7 @@
     <footer class="footer">
       <div>© <span id="y"></span> Querily Labs</div>
     </footer>
-  </div>
+  </main>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();

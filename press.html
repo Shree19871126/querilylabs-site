@@ -5,37 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Press — Querily Labs</title>
   <meta name="description" content="Press and media resources for Querily Labs." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <div class="brand">Querily Labs</div>
-      <nav>
-        <a href="/">Home</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <img src="/assets/querily-logo.png" alt="Querily Labs" />
+      </a>
+
+      <nav class="nav-links">
+        <a href="/products.html">Products</a>
         <a href="/about.html">About</a>
         <a href="/articles.html">Articles</a>
-        <a href="/products.html">Products</a>
+        <a class="active" href="/press.html">Press</a>
         <a href="/contact.html">Contact</a>
       </nav>
-    </header>
 
+      <div class="nav-cta">
+        <a class="btn ghost" href="/products.html">See products</a>
+        <a class="btn primary" href="/contact.html">Request a demo</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
     <section class="hero">
       <div class="kicker">Press room</div>
       <h1>Press & Media</h1>
-      <p class="sub">
-        Resources for journalists, editors, and institutional partners.
-      </p>
+      <p class="sub">Resources for journalists, editors, and institutional partners.</p>
     </section>
 
     <section class="grid">
-      <div class="card">
+      <div class="card full">
         <div class="tag">Boilerplate</div>
         <h3>Company overview</h3>
         <p class="muted">
-          Querily Labs is a product studio building identity-first software for trusted communication
-          inside communities and institutions. Its flagship product, Qincept, is designed for campuses
-          and verified organizations.
+          Querily Labs is a product studio building identity-first software for trusted communication inside
+          communities and institutions. Its flagship product, Qincept, is designed for campuses and verified organizations.
         </p>
       </div>
 
@@ -44,7 +57,6 @@
         <h3>Media contact</h3>
         <p class="muted">For press inquiries:</p>
         <p class="email">contact@querilylabs.com</p>
-        <p class="muted">If you prefer a dedicated mailbox later, we can add press@.</p>
       </div>
 
       <div class="card half">
@@ -61,7 +73,7 @@
     <footer class="footer">
       <div>© <span id="y"></span> Querily Labs</div>
     </footer>
-  </div>
+  </main>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
