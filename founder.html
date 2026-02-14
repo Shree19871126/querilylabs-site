@@ -18,19 +18,30 @@
 </head>
 
 <body>
-  <div class="wrap">
+  
     <header class="nav">
-      <div class="brand">Querily Labs</div>
-      <nav>
-        <a href="/">Home</a>
-        <a href="/about.html">About</a>
+    <div class="nav-inner">
+        <a class="brand" href="/">
+        <img src="/assets/logo/querily-logo.jpg" alt="Querily Labs" />
+        </a>
+
+        <nav class="nav-links">
         <a href="/products.html">Products</a>
+        <a href="/about.html">About</a>
+        <a href="/founder.html" class="active">Founder</a>
         <a href="/articles.html">Articles</a>
         <a href="/press.html">Press</a>
-        <a href="/founder.html" aria-current="page">Founder</a>
         <a href="/contact.html">Contact</a>
-      </nav>
+        </nav>
+
+        <div class="nav-cta">
+        <a class="btn ghost" href="/products.html">See products</a>
+        <a class="btn primary" href="/contact.html">Request a demo</a>
+        </div>
+    </div>
     </header>
+
+    <main class="wrap">
 
     <section class="hero">
       <div class="kicker">Founder</div>
@@ -126,6 +137,7 @@
       <div>© <span id="y"></span> Querily Labs Pvt. Ltd.</div>
       <div class="muted">Institutional communication infrastructure</div>
     </footer>
+    </main>
   </div>
 
   <script>
