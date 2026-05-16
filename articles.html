@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet"
   >
 
@@ -48,22 +48,21 @@
       top: 0;
       z-index: 100;
       backdrop-filter: blur(14px);
-      background: rgba(255,255,255,0.92);
+      background: rgba(255,255,255,0.94);
       border-bottom: 1px solid #ececf3;
     }
 
     .nav {
-      height: 92px;
+      height: 96px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .logo {
-      font-size: 54px;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      color: #5e17eb;
+    .logo-img {
+      height: 58px;
+      width: auto;
+      display: block;
     }
 
     .menu {
@@ -73,7 +72,7 @@
     }
 
     .menu a {
-      font-weight: 600;
+      font-weight: 700;
       color: #4b5563;
       transition: 0.2s ease;
     }
@@ -91,17 +90,13 @@
       border-radius: 999px;
       background: #5e17eb;
       color: white;
-      font-weight: 700;
+      font-weight: 800;
       box-shadow: 0 18px 44px rgba(94,23,235,0.28);
       transition: 0.2s ease;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-    }
-
     .hero {
-      padding: 90px 0 60px;
+      padding: 90px 0 64px;
     }
 
     .tag {
@@ -111,15 +106,16 @@
       border-radius: 999px;
       background: rgba(94,23,235,0.12);
       color: #5e17eb;
-      font-weight: 700;
-      margin-bottom: 22px;
+      font-weight: 800;
+      margin-bottom: 24px;
     }
 
     .hero h1 {
-      font-size: clamp(60px, 9vw, 110px);
+      max-width: 900px;
+      font-size: clamp(64px, 9vw, 118px);
       line-height: 0.92;
-      letter-spacing: -0.08em;
-      margin-bottom: 26px;
+      letter-spacing: -0.085em;
+      margin-bottom: 30px;
     }
 
     .hero p {
@@ -132,29 +128,56 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
       gap: 34px;
-      padding-bottom: 110px;
+      padding-bottom: 120px;
     }
 
     .article-card {
-      background: white;
+      background: #ffffff;
       border-radius: 32px;
       overflow: hidden;
       border: 1px solid #ececf3;
-      box-shadow: 0 18px 50px rgba(15,15,25,0.08);
+      box-shadow: 0 18px 55px rgba(15,15,25,0.08);
       transition: 0.25s ease;
     }
 
     .article-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 28px 70px rgba(15,15,25,0.12);
+      box-shadow: 0 28px 75px rgba(15,15,25,0.13);
     }
 
     .article-image {
       width: 100%;
-      height: 240px;
+      height: 260px;
       object-fit: cover;
       display: block;
       background: #efeff7;
+    }
+
+    .article-cover {
+      min-height: 260px;
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background:
+        radial-gradient(circle at top right, rgba(94,23,235,0.28), transparent 35%),
+        linear-gradient(135deg, #ffffff 0%, #f1ecff 52%, #5e17eb 100%);
+    }
+
+    .cover-brand {
+      font-size: 24px;
+      font-weight: 900;
+      color: #5e17eb;
+      letter-spacing: -0.05em;
+    }
+
+    .cover-title {
+      max-width: 90%;
+      font-size: 30px;
+      line-height: 1.08;
+      letter-spacing: -0.05em;
+      font-weight: 900;
+      color: #101018;
     }
 
     .article-body {
@@ -169,12 +192,12 @@
       background: rgba(94,23,235,0.12);
       color: #5e17eb;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 18px;
     }
 
     .article-title {
-      font-size: 34px;
+      font-size: 32px;
       line-height: 1.1;
       letter-spacing: -0.05em;
       margin-bottom: 16px;
@@ -190,7 +213,7 @@
     .article-summary {
       color: #5d6478;
       font-size: 17px;
-      margin-bottom: 26px;
+      margin-bottom: 28px;
     }
 
     .article-link {
@@ -198,8 +221,18 @@
       align-items: center;
       gap: 8px;
       color: #5e17eb;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 16px;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      background: white;
+      border: 1px solid #ececf3;
+      border-radius: 32px;
+      padding: 80px 20px;
+      text-align: center;
+      color: #7a8095;
     }
 
     footer {
@@ -215,8 +248,16 @@
         display: none;
       }
 
+      .logo-img {
+        height: 46px;
+      }
+
+      .hero {
+        padding-top: 70px;
+      }
+
       .hero h1 {
-        font-size: 64px;
+        font-size: 62px;
       }
 
       .hero p {
@@ -227,12 +268,14 @@
 </head>
 
 <body>
-
   <header>
     <div class="wrap nav">
-
-      <a href="/index.html" class="logo">
-        querily
+      <a href="/index.html">
+        <img
+          src="/assets/logo/querily-logo.jpg"
+          alt="Querily Labs"
+          class="logo-img"
+        />
       </a>
 
       <nav class="menu">
@@ -247,90 +290,150 @@
       <a href="/index.html#demo" class="btn-primary">
         Request demo
       </a>
-
     </div>
   </header>
 
   <main>
-
     <section class="hero wrap">
+      <div class="tag">Featured writing</div>
 
-      <div class="tag">
-        Featured writing
-      </div>
-
-      <h1>
-        Latest institutional thinking.
-      </h1>
+      <h1>Latest institutional thinking.</h1>
 
       <p>
         These articles explain why institutional communication is becoming
         infrastructure — and why memory, governance, and coordination matter
         in the AI era.
       </p>
-
     </section>
 
     <section class="wrap">
+      <div id="articlesGrid" class="articles-grid">
+        <div class="empty-state">Loading articles...</div>
+      </div>
+    </section>
+  </main>
 
-      <div class="articles-grid">
+  <footer>
+    <div class="wrap">
+      © 2026 Querily Labs Pvt. Ltd. All rights reserved.
+    </div>
+  </footer>
 
-        <!-- ARTICLE CARD -->
+  <script>
+    window.__SUPABASE_URL__ = "https://rfpzjaygjewojjqzqoop.supabase.co";
+    window.__SUPABASE_ANON_KEY__ = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcHpqYXlnamV3b2pqcXpxb29wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MjI1MDcsImV4cCI6MjA5NDQ5ODUwN30.PbPiQZh7iS1-okmZbg6mURgOVJYZIiWr6CjUTGQ5zcA";
+  </script>
 
-        <article class="article-card">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+  <script>
+    const client = supabase.createClient(
+      window.__SUPABASE_URL__,
+      window.__SUPABASE_ANON_KEY__
+    );
+
+    const articlesGrid = document.getElementById("articlesGrid");
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatDate(value) {
+      if (!value) return "Published article";
+
+      return new Date(value).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
+    }
+
+    function renderArticle(article) {
+      const title = escapeHtml(article.title);
+      const category = escapeHtml(article.category || "Founder Note");
+      const author = escapeHtml(article.author || "S. Shreedharan");
+      const summary = escapeHtml(article.summary || "");
+      const externalUrl = escapeHtml(article.external_url || "#");
+      const date = formatDate(article.published_at);
+
+      const cover = article.image_url
+        ? `
           <img
-            src="./assets/articles/coordination-life-business.png"
-            alt="Introducing Coordination in Life and Business"
+            src="${escapeHtml(article.image_url)}"
+            alt="${title}"
             class="article-image"
           />
+        `
+        : `
+          <div class="article-cover">
+            <div class="cover-brand">querily</div>
+            <div class="cover-title">${title}</div>
+          </div>
+        `;
+
+      return `
+        <article class="article-card">
+          ${cover}
 
           <div class="article-body">
+            <div class="article-pill">${category}</div>
 
-            <div class="article-pill">
-              Founder Note
-            </div>
-
-            <h2 class="article-title">
-              Introducing Coordination in Life and Business
-            </h2>
+            <h2 class="article-title">${title}</h2>
 
             <p class="article-meta">
-              By S. Shreedharan · May 16, 2026
+              By ${author} · ${date}
             </p>
 
-            <p class="article-summary">
-              Why coordination is one of the most overlooked foundations
-              behind life, business, institutions, and the future of
-              structured communication systems.
-            </p>
+            <p class="article-summary">${summary}</p>
 
             <a
-              href="PASTE_YOUR_MEDIUM_LINK_HERE"
+              href="${externalUrl}"
               target="_blank"
               rel="noopener noreferrer"
               class="article-link"
             >
               Read on Medium →
             </a>
-
           </div>
-
         </article>
+      `;
+    }
 
-      </div>
+    async function loadArticles() {
+      const { data, error } = await client
+        .from("articles")
+        .select("*")
+        .eq("is_published", true)
+        .order("published_at", { ascending: false });
 
-    </section>
+      if (error) {
+        console.error(error);
+        articlesGrid.innerHTML = `
+          <div class="empty-state">
+            Failed to load articles.
+          </div>
+        `;
+        return;
+      }
 
-  </main>
+      if (!data || data.length === 0) {
+        articlesGrid.innerHTML = `
+          <div class="empty-state">
+            No articles published yet.
+          </div>
+        `;
+        return;
+      }
 
-  <footer>
+      articlesGrid.innerHTML = data.map(renderArticle).join("");
+    }
 
-    <div class="wrap">
-      © 2026 Querily Labs Pvt. Ltd. All rights reserved.
-    </div>
-
-  </footer>
-
+    loadArticles();
+  </script>
 </body>
 </html>
