@@ -503,10 +503,9 @@ img{
 }
 
 .reveal{
-  opacity:0;
-  transform:translateY(22px);
-  filter:blur(6px);
-  transition:opacity .7s ease, transform .7s ease, filter .7s ease;
+  opacity:1;
+  transform:none;
+  filter:none;
 }
 
 .reveal.visible{
