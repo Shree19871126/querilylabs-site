@@ -291,12 +291,7 @@
 
       </div>
 
-      <form
-        class="waitlist-form"
-        action="mailto:contact@querilylabs.com"
-        method="post"
-        enctype="text/plain"
-      >
+      <form class="waitlist-form">
 
         <input
           name="name"
@@ -350,30 +345,44 @@
 
   </main>
 
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    document.getElementById("y").textContent =
-      new Date().getFullYear();
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
 
-    const reveals = document.querySelectorAll(".reveal");
+  const SUPABASE_URL = "YOUR_SUPABASE_URL";
+  const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
 
-    const observer = new IntersectionObserver(entries => {
+  const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-      entries.forEach(entry => {
+  const form = document.querySelector(".waitlist-form");
 
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-      });
+    const formData = new FormData(form);
 
-    }, {
-      threshold: 0.12
-    });
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      location: formData.get("location"),
+      skills: formData.get("skills"),
+      message: formData.get("message")
+    };
 
-    reveals.forEach(el => observer.observe(el));
+    const { error } = await client
+      .from("future_workforce_waitlist")
+      .insert(payload);
 
-  </script>
+    if (error) {
+      alert("Something went wrong. Please try again.");
+      console.error(error);
+      return;
+    }
 
+    alert("Thank you. Your interest has been registered.");
+    form.reset();
+  });
+</script>
 </body>
 </html>
