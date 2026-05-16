@@ -22,18 +22,15 @@
 
       <nav class="nav-links">
         <a href="/products.html">Products</a>
-        <a href="/about.html">About</a>
-        <a href="/founder.html">Founder</a>
+        <a href="/institutional-memory.html">Memory</a>
+        <a href="/future-workforce.html">Workforce</a>
         <a href="/articles.html">Articles</a>
-        <a href="/press.html">Press</a>
+        <a href="/founder.html">Founder</a>
         <a href="/contact.html">Contact</a>
-        <a href="/institutional-memory.html">Institutional Memory</a>
-        <a href="/future-workforce.html">Future Workforce</a>
       </nav>
 
       <div class="nav-cta">
-        <a class="btn ghost" href="/products.html">Explore Qincept</a>
-        <a class="btn primary" href="/contact.html">Request a demo</a>
+        <a class="btn primary" href="/contact.html">Request demo</a>
       </div>
     </div>
   </header>
@@ -43,7 +40,9 @@
     <section class="hero hero-split reveal">
       <div>
         <div class="kicker">Qincept • Institutional Memory • AI-era coordination</div>
+
         <h1>Institutional Memory Infrastructure for the AI Era.</h1>
+
         <p class="sub">
           Qincept helps institutions preserve decisions, track ownership, reduce coordination loss,
           and create continuity across departments, teams, and leadership changes.
@@ -51,13 +50,14 @@
 
         <div class="ctaRow">
           <a class="btn primary" href="/products.html">Explore Qincept</a>
-          <a class="btn" href="/contact.html">Join Future Workforce</a>
+          <a class="btn" href="/institutional-memory.html">Understand Memory</a>
         </div>
       </div>
 
-      <div class="system-visual">
+      <div class="system-visual" aria-label="Qincept institutional memory system visual">
         <div class="node main-node">Qincept</div>
         <div class="line"></div>
+
         <div class="mini-grid">
           <span>Decisions</span>
           <span>Cases</span>
@@ -178,55 +178,56 @@
 
     <section class="wealth-panel reveal">
       <div class="section-head">
-        <div class="tag">Wealth for All by Qincept</div>
-        <h2>A future workforce model.</h2>
+        <div class="tag">Querily Labs</div>
+        <h2>Building a category around institutional continuity.</h2>
         <p>
-          Once Qincept grows into a meaningful revenue-generating infrastructure business,
-          Querily Labs aims to explore a refreshable team model where capable teams can be onboarded
-          to operate, grow, and benefit from the proceeds of the business.
+          Querily Labs is focused on building infrastructure that helps institutions coordinate,
+          remember, govern, and operate with clarity. Qincept is the flagship system in this direction.
         </p>
       </div>
 
       <div class="grid">
         <div class="card third">
-          <h3>Refreshable teams</h3>
-          <p class="muted">New teams can be added when the business grows and operational needs increase.</p>
+          <h3>For institutions</h3>
+          <p class="muted">Reduce coordination leakage, preserve decisions, and make ownership visible.</p>
         </div>
 
         <div class="card third">
-          <h3>Wealth creation</h3>
-          <p class="muted">The goal is to create pathways beyond salary, where teams can build long-term value.</p>
+          <h3>For leaders</h3>
+          <p class="muted">See accountability, escalation, unresolved cases, and operational history clearly.</p>
         </div>
 
         <div class="card third">
-          <h3>Equal opportunity</h3>
-          <p class="muted">The model aims to provide opportunity for capable people from wealth-limited backgrounds.</p>
+          <h3>For AI-era operations</h3>
+          <p class="muted">Create structured institutional context for future intelligent systems.</p>
         </div>
       </div>
     </section>
 
     <section class="waitlist reveal">
       <div>
-        <div class="tag">Future Workforce Waitlist</div>
-        <h2>Join the future workforce around Qincept.</h2>
+        <div class="tag">Future Workforce</div>
+        <h2>Interested in the future workforce model?</h2>
         <p class="muted">
-          For people interested in building institutional infrastructure and participating in future Qincept teams.
+          Qincept’s future workforce model is explained separately as a long-term vision for responsible,
+          carefully selected teams and shared opportunity.
         </p>
       </div>
 
-      <form class="waitlist-form" action="mailto:contact@querilylabs.com" method="post" enctype="text/plain">
-        <input name="name" placeholder="Your name" required />
-        <input name="email" type="email" placeholder="Email address" required />
-        <input name="skills" placeholder="Skills / area of interest" />
-        <textarea name="message" placeholder="Why do you want to join Qincept?"></textarea>
-        <button class="btn primary" type="submit">Join Waitlist</button>
-      </form>
+      <div class="waitlist-side">
+        <p>
+          The homepage stays focused on Qincept as infrastructure. The future workforce page explains
+          the Wealth for All model, refreshable teams, and waitlist.
+        </p>
+        <a class="btn primary" href="/future-workforce.html">View Workforce Model</a>
+      </div>
     </section>
 
     <footer class="footer">
       <div>© <span id="y"></span> Querily Labs Pvt. Ltd. All rights reserved.</div>
       <div class="footer-links">
-        <a href="/founder.html">Founder</a>
+        <a href="/institutional-memory.html">Memory</a>
+        <a href="/future-workforce.html">Workforce</a>
         <a href="/contact.html">Contact</a>
       </div>
     </footer>
@@ -236,13 +237,18 @@
     document.getElementById("y").textContent = new Date().getFullYear();
 
     const reveals = document.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      });
-    }, { threshold: 0.12 });
 
-    reveals.forEach(el => observer.observe(el));
+    if (reveals.length > 0) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: 0.08 });
+
+      reveals.forEach(el => observer.observe(el));
+    }
   </script>
 </body>
 </html>

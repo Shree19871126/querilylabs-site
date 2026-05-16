@@ -3,12 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Contact — Querily Labs</title>
-  <meta name="description" content="Contact Querily Labs for pilots, demos, and institutional inquiries." />
+  <meta
+    name="description"
+    content="Contact Querily Labs for Qincept demos, institutional pilots, partnerships, and future workforce inquiries."
+  />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="/styles.css" />
 </head>
@@ -22,47 +29,145 @@
 
       <nav class="nav-links">
         <a href="/products.html">Products</a>
-        <a href="/about.html">About</a>
+        <a href="/institutional-memory.html">Memory</a>
+        <a href="/future-workforce.html">Workforce</a>
         <a href="/articles.html">Articles</a>
-        <a href="/press.html">Press</a>
+        <a href="/founder.html">Founder</a>
         <a class="active" href="/contact.html">Contact</a>
-        <a href="/institutional-memory.html">Institutional Memory</a>
-        <a href="/future-workforce.html">Future Workforce</a>
       </nav>
 
       <div class="nav-cta">
-        <a class="btn ghost" href="/products.html">See products</a>
-        <a class="btn primary" href="/contact.html">Request a demo</a>
+        <a class="btn primary" href="mailto:contact@querilylabs.com">Email us</a>
       </div>
     </div>
   </header>
 
   <main class="wrap">
-    <section class="hero">
-      <div class="kicker">Demos • Pilots • Institutional</div>
-      <h1>Contact</h1>
-      <p class="sub">For pilots, demos, or institutional inquiries, reach us at:</p>
+
+    <section class="hero reveal">
+      <div class="kicker">Demos • Pilots • Partnerships</div>
+
+      <h1>Contact Querily Labs.</h1>
+
+      <p class="sub">
+        Reach out for Qincept demos, institutional pilot discussions, partnership inquiries,
+        press requests, or future workforce interest.
+      </p>
+
       <div class="ctaRow">
-        <a class="btn primary" href="mailto:contact@querilylabs.com">Email us</a>
-        <a class="btn" href="/press.html">Press room</a>
+        <a class="btn primary" href="mailto:contact@querilylabs.com">contact@querilylabs.com</a>
+        <a class="btn" href="/products.html">Explore Qincept</a>
       </div>
     </section>
 
-    <section class="grid">
-      <div class="card full">
-        <div class="tag">Email</div>
-        <h3>contact@querilylabs.com</h3>
-        <p class="muted">We typically respond within 1–2 business days.</p>
+    <section class="section reveal">
+      <div class="section-head">
+        <div class="tag">Choose the right path</div>
+        <h2>How can we help?</h2>
+        <p>
+          Qincept is being built for institutions that need memory, accountability,
+          coordination clarity, and governance visibility.
+        </p>
+      </div>
+
+      <div class="grid">
+        <div class="card half">
+          <div class="tag">Institutions</div>
+          <h3>Request a demo or pilot</h3>
+          <p class="muted">
+            For colleges, universities, departments, and organizations interested in
+            institutional memory and coordination infrastructure.
+          </p>
+          <a class="read-more" href="mailto:contact@querilylabs.com?subject=Qincept Demo / Pilot Inquiry">
+            Request demo →
+          </a>
+        </div>
+
+        <div class="card half">
+          <div class="tag">Future Workforce</div>
+          <h3>Join the future workforce waitlist</h3>
+          <p class="muted">
+            For people interested in Qincept’s future workforce model, operations,
+            product building, communication systems, or institutional technology.
+          </p>
+          <a class="read-more" href="/future-workforce.html">
+            Join waitlist →
+          </a>
+        </div>
+
+        <div class="card half">
+          <div class="tag">Partnerships</div>
+          <h3>Partner with Querily Labs</h3>
+          <p class="muted">
+            For incubators, institutional leaders, consultants, investors, and ecosystem
+            partners interested in Qincept’s institutional infrastructure direction.
+          </p>
+          <a class="read-more" href="mailto:contact@querilylabs.com?subject=Partnership Inquiry">
+            Discuss partnership →
+          </a>
+        </div>
+
+        <div class="card half">
+          <div class="tag">Press</div>
+          <h3>Press and editorial inquiries</h3>
+          <p class="muted">
+            For media, articles, interviews, announcements, and institutional communication
+            infrastructure-related inquiries.
+          </p>
+          <a class="read-more" href="/press.html">
+            Visit press room →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="waitlist reveal">
+      <div>
+        <div class="tag">Direct email</div>
+        <h2>contact@querilylabs.com</h2>
+        <p class="muted">
+          Please include your organization name, role, inquiry type, and the coordination
+          or institutional memory problem you want to discuss.
+        </p>
+      </div>
+
+      <div class="waitlist-side">
+        <p>
+          For institutional pilots, include approximate institution size, departments involved,
+          and current coordination challenges.
+        </p>
+        <a class="btn primary" href="mailto:contact@querilylabs.com">Email Querily Labs</a>
       </div>
     </section>
 
     <footer class="footer">
-      <div>© <span id="y"></span> Querily Labs</div>
+      <div>© <span id="y"></span> Querily Labs Pvt. Ltd.</div>
+
+      <div class="footer-links">
+        <a href="/products.html">Products</a>
+        <a href="/institutional-memory.html">Memory</a>
+        <a href="/future-workforce.html">Workforce</a>
+      </div>
     </footer>
+
   </main>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    if (reveals.length > 0) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: 0.08 });
+
+      reveals.forEach(el => observer.observe(el));
+    }
   </script>
 </body>
 </html>
