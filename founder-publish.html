@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Publish Article — Querily Labs</title>
+
+  <link rel="stylesheet" href="/styles.css" />
+
+  <style>
+    .publish-box {
+      max-width: 760px;
+      margin: 60px auto;
+      background: #fff;
+      border: 1px solid #e8e8ee;
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 18px 50px rgba(15, 15, 25, 0.08);
+    }
+
+    .publish-box h1 {
+      margin-bottom: 12px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .form-grid label {
+      font-weight: 700;
+      color: #111;
+    }
+
+    .form-grid input,
+    .form-grid textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ddd;
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 15px;
+    }
+
+    .form-grid textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .status {
+      margin-top: 18px;
+      font-weight: 700;
+    }
+
+    .preview-img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-top: 12px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="publish-box">
+      <div class="tag">Founder Publishing</div>
+
+      <h1>Publish article</h1>
+
+      <p class="muted">
+        Add a Medium article link, image URL, title, and summary. Once published,
+        it will appear automatically in the Articles section.
+      </p>
+
+      <form id="articleForm" class="form-grid">
+        <div>
+          <label>Title</label>
+          <input id="title" required placeholder="Introducing Coordination in Life and Business" />
+        </div>
+
+        <div>
+          <label>Category</label>
+          <input id="category" value="Founder Note" />
+        </div>
+
+        <div>
+          <label>Author</label>
+          <input id="author" value="S. Shreedharan" />
+        </div>
+
+        <div>
+          <label>Published date</label>
+          <input id="published_at" type="date" />
+        </div>
+
+        <div>
+          <label>Summary</label>
+          <textarea id="summary" required placeholder="Short article summary..."></textarea>
+        </div>
+
+        <div>
+          <label>Medium article link</label>
+          <input id="external_url" required placeholder="https://medium.com/..." />
+        </div>
+
+        <div>
+          <label>Article image URL</label>
+          <input id="image_url" placeholder="https://..." />
+          <img id="previewImg" class="preview-img" alt="Article preview" />
+        </div>
+
+        <button class="btn primary" type="submit">Publish article</button>
+
+        <p id="status" class="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    window.__SUPABASE_URL__ = "https://rfpzjaygjewojjqzqoop.supabase.co";
+    window.__SUPABASE_ANON_KEY__ = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcHpqYXlnamV3b2pqcXpxb29wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MjI1MDcsImV4cCI6MjA5NDQ5ODUwN30.PbPiQZh7iS1-okmZbg6mURgOVJYZIiWr6CjUTGQ5zcA";
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const client = supabase.createClient(
+      window.__SUPABASE_URL__,
+      window.__SUPABASE_ANON_KEY__
+    );
+
+    document.getElementById("published_at").valueAsDate = new Date();
+
+    const imageInput = document.getElementById("image_url");
+    const previewImg = document.getElementById("previewImg");
+
+    imageInput.addEventListener("input", () => {
+      if (imageInput.value.trim()) {
+        previewImg.src = imageInput.value.trim();
+        previewImg.style.display = "block";
+      } else {
+        previewImg.style.display = "none";
+      }
+    });
+
+    document.getElementById("articleForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const status = document.getElementById("status");
+      status.textContent = "Publishing...";
+
+      const article = {
+        title: document.getElementById("title").value.trim(),
+        category: document.getElementById("category").value.trim(),
+        author: document.getElementById("author").value.trim(),
+        published_at: document.getElementById("published_at").value,
+        summary: document.getElementById("summary").value.trim(),
+        external_url: document.getElementById("external_url").value.trim(),
+        image_url: document.getElementById("image_url").value.trim(),
+        is_published: true
+      };
+
+      const { error } = await client.from("articles").insert(article);
+
+      if (error) {
+        status.textContent = "Error: " + error.message;
+        status.style.color = "crimson";
+        return;
+      }
+
+      status.textContent = "Article published successfully.";
+      status.style.color = "#5e17eb";
+
+      setTimeout(() => {
+        window.location.href = "/articles.html";
+      }, 1200);
+    });
+  </script>
+</body>
+</html>

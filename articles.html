@@ -1,3 +1,6 @@
+# Updated `articles.html`
+
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,204 +10,396 @@
   <title>Articles — Querily Labs</title>
   <meta
     name="description"
-    content="Articles and insights from Querily Labs on institutional memory, coordination infrastructure, governance, and AI-era operations."
+    content="Articles and insights from Querily Labs on institutional communication, identity, and coordination systems."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f7f7fb;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.9);
+      border-bottom: 1px solid #ececf3;
+    }
+
+    .nav {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 40px;
+      font-weight: 800;
+      color: #5e17eb;
+      letter-spacing: -0.04em;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .menu a {
+      color: #4b5563;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .menu a:hover,
+    .menu a.active {
+      color: #5e17eb;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #5e17eb;
+      color: white;
+      box-shadow: 0 16px 36px rgba(94, 23, 235, 0.28);
+    }
+
+    .hero {
+      padding: 90px 0 48px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(94, 23, 235, 0.12);
+      color: #5e17eb;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 7vw, 84px);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 22px;
+    }
+
+    .hero p {
+      max-width: 840px;
+      font-size: 22px;
+      color: #62667a;
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 28px;
+      padding-bottom: 100px;
+    }
+
+    .article-card {
+      background: white;
+      border: 1px solid #ececf3;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(15,15,25,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 70px rgba(15,15,25,0.12);
+    }
+
+    .article-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      background: #efeff7;
+    }
+
+    .article-body {
+      padding: 28px;
+    }
+
+    .article-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(94,23,235,0.12);
+      color: #5e17eb;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .article-title {
+      font-size: 30px;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+      color: #0f172a;
+    }
+
+    .article-meta {
+      font-size: 14px;
+      color: #7a8095;
+      margin-bottom: 16px;
+    }
+
+    .article-summary {
+      color: #5d6478;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .article-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #5e17eb;
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 80px 20px;
+      color: #7a8095;
+      grid-column: 1 / -1;
+      background: white;
+      border-radius: 28px;
+      border: 1px solid #ececf3;
+    }
+
+    footer {
+      padding: 60px 0;
+      border-top: 1px solid #ececf3;
+      color: #7a8095;
+      text-align: center;
+      background: white;
+    }
+
+    @media (max-width: 860px) {
+      .menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 56px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="/">
-        <img src="/assets/logo/querily-logo.jpg" alt="Querily Labs" />
-      </a>
+  <header>
+    <div class="wrap nav">
+      <a href="/index.html" class="logo">querily</a>
 
-      <nav class="nav-links">
+      <nav class="menu">
         <a href="/products.html">Products</a>
-        <a href="/institutional-memory.html">Memory</a>
+        <a href="/memory.html">Memory</a>
         <a href="/about.html">About</a>
-        <a class="active" href="/articles.html">Articles</a>
+        <a href="/articles.html" class="active">Articles</a>
         <a href="/founder.html">Founder</a>
         <a href="/contact.html">Contact</a>
       </nav>
 
-      <div class="nav-cta">
-        <a class="btn primary" href="/contact.html">Request demo</a>
-      </div>
+      <a href="/index.html#demo" class="btn btn-primary">
+        Request demo
+      </a>
     </div>
   </header>
 
-  <main class="wrap">
+  <main>
+    <section class="hero wrap">
+      <div class="tag">Featured writing</div>
 
-    <section class="hero reveal">
-      <div class="kicker">Articles • Insights • Institutional Systems</div>
+      <h1>Latest institutional thinking.</h1>
 
-      <h1>Writing on institutional memory and coordination.</h1>
-
-      <p class="sub">
-        Essays, analysis, and product perspectives from Querily Labs on institutional
-        communication, memory, accountability, governance, and AI-era operations.
+      <p>
+        These articles explain why institutional communication is becoming
+        infrastructure — and why memory, governance, and coordination matter in the AI era.
       </p>
-
-      <div class="ctaRow">
-        <a class="btn primary" href="/press.html">Press room</a>
-        <a class="btn" href="/editorial-policy.html">Editorial policy</a>
-      </div>
     </section>
 
-    <section class="section reveal">
-      <div class="section-head">
-        <div class="tag">Featured writing</div>
-        <h2>Latest institutional thinking.</h2>
-        <p>
-          These articles explain why institutional communication is becoming infrastructure,
-          and why memory, governance, and coordination matter in the AI era.
-        </p>
-      </div>
-
-      <div class="grid">
-        <article class="card full">
-          <div class="tag">Industry Insight</div>
-
-          <h3>
-            <a href="/why-institutional-communication-infrastructure-ai-era.html">
-              Why Institutional Communication Infrastructure Becomes Necessary in the AI Era
-            </a>
-          </h3>
-
-          <p class="meta">By Querily Labs Editorial Team · January 22, 2026</p>
-
-          <p class="muted">
-            As AI systems increasingly act on human conversations, institutions face a growing
-            governance gap. Informal communication is becoming operational infrastructure —
-            without institutional control.
-          </p>
-
-          <a class="read-more" href="/why-institutional-communication-infrastructure-ai-era.html">
-            Read article →
-          </a>
-        </article>
-
-        <article class="card full">
-          <div class="tag">Industry Insight</div>
-
-          <h3>
-            <a href="/qincept-rethinking-trusted-communities.html">
-              Qincept Is Rethinking How Trusted Communities Communicate
-            </a>
-          </h3>
-
-          <p class="meta">By Querily Labs Editorial Team · January 10, 2026</p>
-
-          <p class="muted">
-            An in-depth look at why Qincept was built as a structured secondary communication system
-            for institutions, campuses, and verified communities.
-          </p>
-
-          <a class="read-more" href="/qincept-rethinking-trusted-communities.html">
-            Read article →
-          </a>
-        </article>
-      </div>
-    </section>
-
-    <section class="dark-panel reveal">
-      <div class="section-head">
-        <div class="tag">Editorial direction</div>
-        <h2>What Querily Labs writes about.</h2>
-        <p>
-          Our writing focuses on the emerging need for structured institutional communication,
-          memory, governance visibility, and AI-ready operational context.
-        </p>
-      </div>
-
-      <div class="grid">
-        <div class="card dark-card half">
-          <h3>Institutional memory</h3>
-          <p class="muted">
-            How decisions, cases, ownership, and timelines can become durable organizational memory.
-          </p>
-        </div>
-
-        <div class="card dark-card half">
-          <h3>Coordination loss</h3>
-          <p class="muted">
-            Why institutions lose time and value when ownership, follow-ups, and decisions are scattered.
-          </p>
-        </div>
-
-        <div class="card dark-card half">
-          <h3>Governance systems</h3>
-          <p class="muted">
-            How accountability, audit trails, permissions, and escalation structures shape better institutions.
-          </p>
-        </div>
-
-        <div class="card dark-card half">
-          <h3>AI-era operations</h3>
-          <p class="muted">
-            Why future AI systems need structured institutional context, not only raw conversations.
-          </p>
+    <section class="wrap">
+      <div id="articlesGrid" class="articles-grid">
+        <div class="empty-state">
+          Loading articles...
         </div>
       </div>
     </section>
-
-    <section class="waitlist reveal">
-      <div>
-        <div class="tag">More coming</div>
-        <h2>More analysis will be published regularly.</h2>
-        <p class="muted">
-          Querily Labs will continue publishing product notes, institutional insights,
-          founder perspectives, and analysis around coordination infrastructure.
-        </p>
-      </div>
-
-      <div class="waitlist-side">
-        <p>
-          For media inquiries, editorial questions, or institutional collaboration,
-          reach Querily Labs directly.
-        </p>
-        <a class="btn primary" href="/contact.html">Contact Querily Labs</a>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div>© <span id="y"></span> Querily Labs Pvt. Ltd.</div>
-
-      <div class="footer-links">
-  <a href="/products.html">Products</a>
-  <a href="/institutional-memory.html">Memory</a>
-  <a href="/future-workforce.html">Workforce</a>
-  <a href="/contact.html">Contact</a>
-</div>
-    </footer>
-
   </main>
 
+  <footer>
+    <div class="wrap">
+      © 2026 Querily Labs Pvt. Ltd. All rights reserved.
+    </div>
+  </footer>
+
   <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+    window.__SUPABASE_URL__ = "https://rfpzjaygjewojjqzqoop.supabase.co";
+    window.__SUPABASE_ANON_KEY__ = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcHpqYXlnamV3b2pqcXpxb29wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MjI1MDcsImV4cCI6MjA5NDQ5ODUwN30.PbPiQZh7iS1-okmZbg6mURgOVJYZIiWr6CjUTGQ5zcA";
+  </script>
 
-    const reveals = document.querySelectorAll(".reveal");
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    if (reveals.length > 0) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, { threshold: 0.08 });
+  <script>
+    const client = supabase.createClient(
+      window.__SUPABASE_URL__,
+      window.__SUPABASE_ANON_KEY__
+    );
 
-      reveals.forEach(el => observer.observe(el));
+    const articlesGrid = document.getElementById("articlesGrid");
+
+    async function loadArticles() {
+      const { data, error } = await client
+        .from("articles")
+        .select("*")
+        .eq("is_published", true)
+        .order("published_at", { ascending: false });
+
+      if (error) {
+        articlesGrid.innerHTML = `
+          <div class="empty-state">
+            Failed to load articles.
+          </div>
+        `;
+
+        console.error(error);
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        articlesGrid.innerHTML = `
+          <div class="empty-state">
+            No articles published yet.
+          </div>
+        `;
+
+        return;
+      }
+
+      articlesGrid.innerHTML = data.map(article => `
+        <article class="article-card">
+          <img
+            src="${article.image_url || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop'}"
+            alt="${article.title}"
+            class="article-image"
+          />
+
+          <div class="article-body">
+            <div class="article-pill">
+              ${article.category || 'Founder Note'}
+            </div>
+
+            <h2 class="article-title">
+              ${article.title}
+            </h2>
+
+            <p class="article-meta">
+              By ${article.author || 'Querily Labs'} ·
+              ${new Date(article.published_at).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </p>
+
+            <p class="article-summary">
+              ${article.summary || ''}
+            </p>
+
+            <a
+              href="${article.external_url}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="article-link"
+            >
+              Read article →
+            </a>
+          </div>
+        </article>
+      `).join('');
     }
+
+    loadArticles();
   </script>
 </body>
 </html>
+```
+
+---
+
+# What to Replace
+
+Replace these:
+
+```html
+window.__SUPABASE_URL__ = "YOUR_SUPABASE_URL";
+window.__SUPABASE_ANON_KEY__ = "YOUR_SUPABASE_ANON_KEY";
+```
+
+with your real values.
+
+---
+
+# Result
+
+You now have:
+
+* Dynamic Articles system
+* Founder publishing flow
+* Medium article support
+* Custom image tiles
+* Automatic article rendering from DB
+* Professional publication-style Articles page
+
+Once you publish from `founder-publish.html`, the article automatically appears here.
