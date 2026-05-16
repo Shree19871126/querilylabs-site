@@ -11,6 +11,14 @@
     content="The Future Workforce model by Qincept explores refreshable teams, institutional responsibility, and long-term wealth creation opportunities."
   />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="/styles.css" />
 </head>
 
@@ -25,17 +33,17 @@
 
       <nav class="nav-links">
         <a href="/products.html">Products</a>
-        <a href="/institutional-memory.html">Institutional Memory</a>
-        <a class="active" href="/future-workforce.html">Future Workforce</a>
+        <a href="/institutional-memory.html">Memory</a>
         <a href="/about.html">About</a>
-        <a href="/founder.html">Founder</a>
         <a href="/articles.html">Articles</a>
-        <a href="/press.html">Press</a>
+        <a href="/founder.html">Founder</a>
         <a href="/contact.html">Contact</a>
       </nav>
 
       <div class="nav-cta">
-        <a class="btn primary" href="/contact.html">Join waitlist</a>
+        <a class="btn primary" href="#waitlist">
+          Join waitlist
+        </a>
       </div>
 
     </div>
@@ -61,6 +69,7 @@
       </p>
 
       <div class="ctaRow">
+
         <a class="btn primary" href="#waitlist">
           Join Future Workforce Waitlist
         </a>
@@ -68,6 +77,7 @@
         <a class="btn" href="/institutional-memory.html">
           Understand Qincept
         </a>
+
       </div>
 
     </section>
@@ -337,54 +347,137 @@
       </div>
 
       <div class="footer-links">
-  <a href="/products.html">Products</a>
-  <a href="/institutional-memory.html">Memory</a>
-  <a href="/future-workforce.html">Workforce</a>
-  <a href="/contact.html">Contact</a>
-</div>
+        <a href="/products.html">Products</a>
+        <a href="/institutional-memory.html">Memory</a>
+        <a href="/about.html">About</a>
+        <a href="/future-workforce.html">Workforce</a>
+        <a href="/contact.html">Contact</a>
+      </div>
 
     </footer>
 
   </main>
 
+  <!-- SUPABASE -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-  document.getElementById("y").textContent = new Date().getFullYear();
+  <script>
 
-  const SUPABASE_URL = "https://rfpzjaygjewojjqzqoop.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcHpqYXlnamV3b2pqcXpxb29wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MjI1MDcsImV4cCI6MjA5NDQ5ODUwN30.PbPiQZh7iS1-okmZbg6mURgOVJYZIiWr6CjUTGQ5zcA";
+    document.getElementById("y").textContent =
+      new Date().getFullYear();
 
-  const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    /* Reveal animation */
 
-  const form = document.querySelector(".waitlist-form");
+    const reveals =
+      document.querySelectorAll(".reveal");
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+    if (reveals.length > 0) {
 
-    const formData = new FormData(form);
+      const observer =
+        new IntersectionObserver(entries => {
 
-    const payload = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      location: formData.get("location"),
-      skills: formData.get("skills"),
-      message: formData.get("message")
-    };
+          entries.forEach(entry => {
 
-    const { error } = await client
-      .from("future_workforce_waitlist")
-      .insert(payload);
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
 
-    if (error) {
-      alert("Something went wrong. Please try again.");
-      console.error(error);
-      return;
+          });
+
+        }, {
+          threshold: 0.08
+        });
+
+      reveals.forEach(el =>
+        observer.observe(el)
+      );
+
     }
 
-    alert("Thank you. Your interest has been registered.");
-    form.reset();
-  });
-</script>
+    /* Supabase config */
+
+    window.__SUPABASE_URL__ =
+      "https://rfpzjaygjewojjqzqoop.supabase.co";
+
+    window.__SUPABASE_ANON_KEY__ =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcHpqYXlnamV3b2pqcXpxb29wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MjI1MDcsImV4cCI6MjA5NDQ5ODUwN30.PbPiQZh7iS1-okmZbg6mURgOVJYZIiWr6CjUTGQ5zcA";
+
+    const SUPABASE_URL = "https://rfpzjaygjewojjqzqoop.supabase.co"
+      window.__SUPABASE_URL__;
+
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJmcHpqYXlnamV3b2pqcXpxb29wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg5MjI1MDcsImV4cCI6MjA5NDQ5ODUwN30.PbPiQZh7iS1-okmZbg6mURgOVJYZIiWr6CjUTGQ5zcA"
+      window.__SUPABASE_ANON_KEY__;
+
+    let client = null;
+
+    try {
+
+      client =
+        supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_ANON_KEY
+        );
+
+    } catch (err) {
+
+      console.error(
+        "Supabase initialization failed",
+        err
+      );
+
+    }
+
+    const form =
+      document.querySelector(".waitlist-form");
+
+    if (form && client) {
+
+      form.addEventListener(
+        "submit",
+        async function (e) {
+
+          e.preventDefault();
+
+          const formData =
+            new FormData(form);
+
+          const payload = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            location: formData.get("location"),
+            skills: formData.get("skills"),
+            message: formData.get("message")
+          };
+
+          const { error } =
+            await client
+              .from("future_workforce_waitlist")
+              .insert(payload);
+
+          if (error) {
+
+            console.error(error);
+
+            alert(
+              "Something went wrong. Please try again."
+            );
+
+            return;
+
+          }
+
+          alert(
+            "Thank you. Your interest has been registered."
+          );
+
+          form.reset();
+
+        }
+      );
+
+    }
+
+  </script>
+
 </body>
 </html>
