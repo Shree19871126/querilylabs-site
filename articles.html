@@ -9,190 +9,158 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
   <link rel="stylesheet" href="/styles.css" />
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: "Inter", sans-serif;
       background: #f7f7fb;
-      color: #111;
-      line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .articles-main {
+      padding: 64px 0 96px;
     }
 
-    .wrap {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
+    .articles-hero {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto 36px;
+      padding: 64px 72px;
+      border-radius: 28px;
+      border: 1px solid #ddd4f7;
+      background:
+        radial-gradient(circle at top left, rgba(94, 23, 235, 0.13), transparent 32%),
+        linear-gradient(135deg, #ffffff 0%, #faf8ff 58%, #f4efff 100%);
+      box-shadow: 0 24px 70px rgba(15, 15, 25, 0.06);
     }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid #ececf3;
-    }
-
-    
-
-  
-
-    .nav > a {
-  display: flex;
-  align-items: center;
-}
-
-
-    .hero {
-      padding: 88px 0 56px;
-    }
-
-    .tag {
+    .articles-tag {
       display: inline-flex;
-      align-items: center;
       padding: 10px 18px;
       border-radius: 999px;
       background: rgba(94, 23, 235, 0.12);
       color: #5e17eb;
       font-weight: 800;
-      margin-bottom: 22px;
+      margin-bottom: 28px;
     }
 
-    .hero h1 {
-      max-width: 920px;
-      font-size: clamp(54px, 7vw, 88px);
+    .articles-hero h1 {
+      max-width: 850px;
+      font-size: clamp(54px, 7vw, 92px);
       line-height: 0.94;
       letter-spacing: -0.075em;
       margin-bottom: 26px;
+      color: #0b0b0f;
     }
 
-    .hero p {
-      max-width: 860px;
+    .articles-hero p {
+      max-width: 850px;
       font-size: 22px;
-      color: #646b80;
+      line-height: 1.55;
+      color: #5f667a;
+    }
+
+    .articles-wrap {
+      width: min(1180px, calc(100% - 48px));
+      margin: 0 auto;
     }
 
     .articles-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
-      padding-bottom: 110px;
+      grid-template-columns: 1fr;
+      gap: 24px;
     }
 
-   .article-card {
-  background: #fff;
-  border-radius: 28px;
-  border: 1px solid #ececf3;
-  box-shadow: 0 18px 50px rgba(15, 15, 25, 0.08);
-  transition: 0.25s ease;
-}
+    .article-card {
+      background: #ffffff;
+      border-radius: 28px;
+      border: 1px solid #ececf3;
+      box-shadow: 0 18px 50px rgba(15, 15, 25, 0.08);
+      overflow: hidden;
+      transition: 0.25s ease;
+    }
 
-.article-card:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 16px 48px rgba(0, 0, 0, 0.06),
-    0 6px 18px rgba(94, 23, 235, 0.08);
-}
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 70px rgba(15, 15, 25, 0.12);
+    }
 
- 
     .article-body {
-      padding: 26px;
+      padding: 32px;
     }
 
     .article-pill {
       display: inline-flex;
-      align-items: center;
       padding: 8px 14px;
       border-radius: 999px;
       background: rgba(94, 23, 235, 0.12);
       color: #5e17eb;
       font-size: 13px;
       font-weight: 800;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
     .article-title {
-  font-size: 2rem;
-  line-height: 1.2;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 16px;
-}
-
-.article-description {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #5b6475;
-  margin-bottom: 28px;
-}
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.12;
+      letter-spacing: -0.055em;
+      color: #071225;
+      margin-bottom: 14px;
+    }
 
     .article-meta {
       color: #7a8095;
-      font-size: 14px;
-      margin-bottom: 16px;
+      font-size: 15px;
+      margin-bottom: 18px;
     }
 
     .article-summary {
+      max-width: 960px;
       color: #5d6478;
-      font-size: 16px;
-      margin-bottom: 24px;
+      font-size: 18px;
+      line-height: 1.65;
+      margin-bottom: 26px;
     }
 
     .article-link {
       display: inline-flex;
       color: #5e17eb;
       font-weight: 800;
-      font-size: 16px;
+      font-size: 17px;
     }
 
     .empty-state {
-      grid-column: 1 / -1;
-      background: #fff;
+      background: #ffffff;
       border: 1px solid #ececf3;
       border-radius: 28px;
       padding: 70px 20px;
       text-align: center;
       color: #7a8095;
+      box-shadow: 0 18px 50px rgba(15, 15, 25, 0.06);
     }
 
-    footer {
-      padding: 64px 0;
-      border-top: 1px solid #ececf3;
-      background: #fff;
-      text-align: center;
-      color: #7a8095;
-    }
-
-    @media (max-width: 860px) {
-      .menu {
-        display: none;
+    @media (max-width: 760px) {
+      .articles-main {
+        padding-top: 36px;
       }
 
-      .logo-img {
-        height: 44px;
+      .articles-hero {
+        padding: 42px 28px;
       }
 
-      .hero {
-        padding: 64px 0 42px;
+      .articles-hero h1 {
+        font-size: 52px;
       }
 
-      .hero h1 {
-        font-size: 54px;
-      }
-
-      .hero p {
+      .articles-hero p {
         font-size: 18px;
+      }
+
+      .article-body {
+        padding: 26px;
       }
     }
   </style>
@@ -200,36 +168,29 @@
 
 <body>
   <header class="nav">
-  <div class="nav-inner">
-
-    <a class="brand" href="/index.html">
-      <img
-        src="/assets/logo/querily-logo.jpg"
-        alt="Querily Labs"
-      />
-    </a>
-
-    <nav class="nav-links">
-      <a href="/products.html">Products</a>
-      <a href="/institutional-memory.html">Memory</a>
-      <a href="/about.html">About</a>
-      <a class="active" href="/articles.html">Articles</a>
-      <a href="/founder.html">Founder</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-
-    <div class="nav-cta">
-      <a class="btn primary" href="/contact.html">
-        Request demo
+    <div class="nav-inner">
+      <a class="brand" href="/index.html">
+        <img src="/assets/logo/querily-logo.jpg" alt="Querily Labs" />
       </a>
+
+      <nav class="nav-links">
+        <a href="/products.html">Products</a>
+        <a href="/institutional-memory.html">Memory</a>
+        <a href="/about.html">About</a>
+        <a class="active" href="/articles.html">Articles</a>
+        <a href="/founder.html">Founder</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn primary" href="/contact.html">Request demo</a>
+      </div>
     </div>
+  </header>
 
-  </div>
-</header>
-
-  <main>
-    <section class="hero wrap">
-      <div class="tag">Featured writing</div>
+  <main class="articles-main">
+    <section class="articles-hero">
+      <div class="articles-tag">Featured writing</div>
 
       <h1>Latest institutional thinking.</h1>
 
@@ -240,7 +201,7 @@
       </p>
     </section>
 
-    <section class="wrap">
+    <section class="articles-wrap">
       <div id="articlesGrid" class="articles-grid">
         <div class="empty-state">Loading articles...</div>
       </div>
@@ -254,8 +215,8 @@
   </footer>
 
   <script>
-    window.__SUPABASE_URL__ = "";
-    window.__SUPABASE_ANON_KEY__ = "";
+    window.__SUPABASE_URL__ = "YOUR_SUPABASE_URL";
+    window.__SUPABASE_ANON_KEY__ = "YOUR_SUPABASE_ANON_KEY";
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -287,76 +248,55 @@
       });
     }
 
-  function renderArticle(article) {
-  const title = escapeHtml(article.title);
-  const category = escapeHtml(article.category || "Founder Note");
-  const author = escapeHtml(article.author || "S. Shreedharan");
-  const summary = escapeHtml(article.summary || "");
-  const externalUrl = escapeHtml(article.external_url || "#");
-  const publishedDate = formatDate(article.published_at);
+    function renderArticle(article) {
+      const title = escapeHtml(article.title);
+      const category = escapeHtml(article.category || "Founder Note");
+      const author = escapeHtml(article.author || "S. Shreedharan");
+      const summary = escapeHtml(article.summary || "");
+      const externalUrl = escapeHtml(article.external_url || "#");
+      const publishedDate = formatDate(article.published_at);
 
-  return `
-    <article class="article-card">
+      return `
+        <article class="article-card">
+          <div class="article-body">
+            <div class="article-pill">${category}</div>
 
-      <div class="article-body">
+            <h2 class="article-title">${title}</h2>
 
-        <div class="article-pill">
-          ${category}
-        </div>
+            <p class="article-meta">
+              By ${author}${publishedDate ? " · " + publishedDate : ""}
+            </p>
 
-        <h2 class="article-title">
-          ${title}
-        </h2>
+            <p class="article-summary">${summary}</p>
 
-        <p class="article-meta">
-          By ${author}${publishedDate ? " · " + publishedDate : ""}
-        </p>
-
-        <p class="article-summary">
-          ${summary}
-        </p>
-
-        <a
-          href="${externalUrl}"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="article-link"
-        >
-          Read on Medium →
-        </a>
-
-      </div>
-
-    </article>
-  `;
-}
+            <a
+              href="${externalUrl}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="article-link"
+            >
+              Read on Medium →
+            </a>
+          </div>
+        </article>
+      `;
+    }
 
     async function loadArticles() {
       const { data, error } = await client
         .from("articles")
-        .select("id, title, category, author, summary, image_url, external_url, published_at, is_published")
+        .select("id, title, category, author, summary, external_url, published_at, is_published")
         .eq("is_published", true)
         .order("published_at", { ascending: false });
 
       if (error) {
         console.error(error);
-
-        articlesGrid.innerHTML = `
-          <div class="empty-state">
-            Failed to load articles.
-          </div>
-        `;
-
+        articlesGrid.innerHTML = `<div class="empty-state">Failed to load articles.</div>`;
         return;
       }
 
       if (!data || data.length === 0) {
-        articlesGrid.innerHTML = `
-          <div class="empty-state">
-            No articles published yet.
-          </div>
-        `;
-
+        articlesGrid.innerHTML = `<div class="empty-state">No articles published yet.</div>`;
         return;
       }
 
