@@ -1,0 +1,51 @@
+-- Run in the Supabase SQL Editor for the project used by connect.html.
+-- No public SELECT/INSERT/UPDATE/DELETE policies are created for this table.
+CREATE TABLE IF NOT EXISTS public.contact_rate_limits (
+  bucket_key text PRIMARY KEY,
+  window_start timestamptz NOT NULL DEFAULT now(),
+  request_count integer NOT NULL DEFAULT 0,
+  updated_at timestamptz NOT NULL DEFAULT now()
+);
+
+ALTER TABLE public.contact_rate_limits ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON public.contact_rate_limits FROM PUBLIC, anon, authenticated;
+
+CREATE OR REPLACE FUNCTION public.contact_rate_limit_check(
+  p_key text,
+  p_max integer DEFAULT 5,
+  p_window_seconds integer DEFAULT 900
+) RETURNS boolean
+LANGUAGE plpgsql
+SECURITY DEFINER
+SET search_path = ''
+AS $$
+DECLARE
+  current_count integer;
+BEGIN
+  IF p_key IS NULL OR length(p_key) <> 64 OR p_max NOT BETWEEN 1 AND 100
+     OR p_window_seconds NOT BETWEEN 60 AND 86400 THEN
+    RETURN false;
+  END IF;
+
+  INSERT INTO public.contact_rate_limits AS limits
+    (bucket_key, window_start, request_count, updated_at)
+  VALUES (p_key, now(), 1, now())
+  ON CONFLICT (bucket_key) DO UPDATE
+    SET request_count = CASE
+      WHEN limits.window_start <= now() - make_interval(secs => p_window_seconds) THEN 1
+      ELSE limits.request_count + 1 END,
+    window_start = CASE
+      WHEN limits.window_start <= now() - make_interval(secs => p_window_seconds) THEN now()
+      ELSE limits.window_start END,
+    updated_at = now()
+  RETURNING request_count INTO current_count;
+
+  RETURN current_count <= p_max;
+END;
+$$;
+
+REVOKE ALL ON FUNCTION public.contact_rate_limit_check(text, integer, integer) FROM PUBLIC, anon, authenticated;
+GRANT EXECUTE ON FUNCTION public.contact_rate_limit_check(text, integer, integer) TO service_role;
+
+-- Optional periodic maintenance (e.g. weekly, after verifying traffic patterns):
+-- DELETE FROM public.contact_rate_limits WHERE updated_at < now() - interval '7 days';

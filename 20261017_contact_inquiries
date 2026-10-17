@@ -1,0 +1,31 @@
+-- Private storage for contact inquiries submitted through the Edge Function.
+-- Run in the SQL Editor of your intended Supabase project.
+-- Public clients are NOT permitted to read, insert, or modify this table.
+CREATE TABLE IF NOT EXISTS public.contact_inquiries (
+  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NOT NULL DEFAULT now(),
+  topic text NOT NULL CHECK (topic IN (
+    'Request a demo',
+    'Explore an institutional pilot',
+    'Research or strategic collaboration',
+    'General inquiry'
+  )),
+  sender_name text NOT NULL CHECK (char_length(sender_name) BETWEEN 2 AND 120),
+  sender_email text NOT NULL CHECK (char_length(sender_email) BETWEEN 3 AND 254),
+  message text NOT NULL CHECK (char_length(message) BETWEEN 10 AND 4000),
+  email_status text NOT NULL DEFAULT 'pending'
+    CHECK (email_status IN ('pending', 'accepted', 'failed')),
+  resend_message_id text,
+  email_error text
+);
+
+CREATE INDEX IF NOT EXISTS contact_inquiries_created_at_idx
+  ON public.contact_inquiries (created_at DESC);
+
+ALTER TABLE public.contact_inquiries ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON TABLE public.contact_inquiries FROM PUBLIC, anon, authenticated;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.contact_inquiries TO service_role;
+-- Intentionally NO public RLS policies. Only trusted server code with service_role accesses it.
+
+-- Optional later: choose a retention period and delete old inquiries after handling.
