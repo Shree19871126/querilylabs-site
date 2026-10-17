@@ -1,672 +1,254 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b1021"><meta name="description" content="Querily Labs builds Qincept — institutional continuity infrastructure connecting communication, responsibility, decisions and memory."><title>Querily Labs — Continuity, by design</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#5e17eb;--ink:#121622;--navy:#080e20;--slate:#5c646c;--max:1200px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);background:#f8f9fc;overflow-x:hidden}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit}button:focus-visible,a:focus-visible{outline:3px solid #ae8aff;outline-offset:4px}img{max-width:100%;display:block}::selection{background:#c6b0ff;color:#111}
+.geo-bg{position:relative;isolation:isolate}.geo-bg:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(90deg,rgba(94,23,235,.045) 1px,transparent 1px),linear-gradient(rgba(94,23,235,.045) 1px,transparent 1px),radial-gradient(circle at 50% 50%,transparent 0 26px,rgba(94,23,235,.055) 27px 28px,transparent 29px);background-size:104px 104px,104px 104px,208px 208px;mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.topbar{height:78px;position:relative;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:0 max(4.5vw,calc((100vw - var(--max))/2));background:rgba(255,255,255,.98);border-bottom:1px solid #e8e7ef;gap:20px}.brand{display:flex;align-items:center;min-width:154px}.brand img{width:142px;max-height:43px;object-fit:contain;object-position:left}.brand-fallback{display:none;font-family:Manrope,sans-serif;font-size:27px;font-weight:800;letter-spacing:-1.9px}.brand-fallback b{color:var(--purple)}.nav-links{display:flex;gap:clamp(15px,2.8vw,36px);align-items:center}.nav-links a{font-size:13px;font-weight:700;color:#424658;transition:color .2s}.nav-links a:hover,.nav-links a[aria-current]{color:var(--purple)}.nav-cta{display:inline-flex;align-items:center;gap:9px;border-radius:999px;padding:13px 20px;color:white;background:var(--purple);font-size:12px;font-weight:800;box-shadow:0 10px 28px rgba(94,23,235,.18);white-space:nowrap;transition:transform .2s,background .2s}.nav-cta:hover{transform:translateY(-2px);background:#4d0bd4}.menu-button{display:none;background:transparent;border:0;cursor:pointer;padding:10px}
+.entrance{position:relative;height:min(790px,calc(100svh - 78px));min-height:610px;overflow:hidden;background:#ef9851;isolation:isolate}.warm-room,.night-room{position:absolute;inset:0;pointer-events:none}.warm-room{background:radial-gradient(circle at 50% 33%,#ffce83 0%,#f5a351 43%,#c97542 100%);transition:opacity 1.5s ease}.warm-room:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(112,48,27,.13) 0 1px,transparent 1px 100%),linear-gradient(0deg,rgba(112,48,27,.08) 0 1px,transparent 1px 100%);background-size:108px 108px;opacity:.55}.warm-room:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(#cb784b,#c27b51);clip-path:polygon(0 20%,100% 20%,100% 100%,0 100%);border-top:10px solid #a75c3a}.wall-disc{position:absolute;width:clamp(230px,34vw,570px);aspect-ratio:1;border:2px solid rgba(255,245,212,.34);border-radius:50%;top:-25%;right:-8%;box-shadow:0 0 0 50px rgba(255,242,214,.06),0 0 0 100px rgba(255,242,214,.05)}.wall-square{position:absolute;left:5%;top:22%;width:130px;height:130px;border:2px solid rgba(255,239,204,.35);border-radius:17px;transform:rotate(-12deg)}
+.window{position:absolute;top:24%;left:8%;width:15%;height:37%;border:12px solid #9e5436;border-radius:100px 100px 8px 8px;background:linear-gradient(145deg,#ffe8b0,#ffd187 75%);box-shadow:inset 0 0 0 7px #d98b50,0 20px 40px rgba(103,52,27,.12)}.window:before,.window:after{content:"";position:absolute;background:#9e5436}.window:before{width:8px;top:0;bottom:0;left:49%}.window:after{height:8px;left:0;right:0;top:56%}.office-plant{position:absolute;bottom:12%;width:70px;height:140px;opacity:.9}.office-plant.left{left:5%}.office-plant.right{right:7%;transform:scale(.8)}.office-plant:before{content:"";position:absolute;bottom:0;left:15px;width:48px;height:54px;background:linear-gradient(100deg,#b65a32,#e28d55);border-radius:4px 4px 16px 16px}.office-plant:after{content:"";position:absolute;bottom:42px;left:34px;width:5px;height:90px;background:#48774b;transform:rotate(-7deg)}.office-plant i{position:absolute;bottom:70px;left:15px;width:28px;height:51px;border-radius:100% 0 100% 0;background:#548e52;transform:rotate(-45deg)}.office-plant i:nth-child(2){left:39px;bottom:90px;transform:rotate(40deg)}.office-plant i:nth-child(3){left:19px;bottom:115px;transform:rotate(-20deg);width:22px;height:43px}.room-furniture{position:absolute;right:6%;bottom:12%;width:21%;height:34%;border-radius:12px;background:linear-gradient(155deg,#b66a46,#884a37);box-shadow:inset 0 10px rgba(255,225,177,.16),0 25px 30px rgba(78,38,23,.12);opacity:.65}.room-furniture:before{content:"";position:absolute;top:-20%;left:7%;width:65%;height:22%;border-radius:9px;background:#d4874d}.room-furniture:after{content:"";position:absolute;top:-42%;left:24%;width:40%;height:24%;border:9px solid #a25939;border-radius:8px;background:#ffe1a4}
+.welcome{position:absolute;z-index:6;left:clamp(22px,6.7vw,115px);top:12%;max-width:350px;transition:opacity .5s,transform .7s}.eyebrow{font-family:Manrope,sans-serif;text-transform:uppercase;letter-spacing:.23em;font-size:10px;font-weight:800}.welcome .eyebrow{color:#7d4028}.welcome h1{font-family:Manrope,sans-serif;font-size:clamp(30px,3.6vw,56px);line-height:1.09;letter-spacing:-.065em;margin:19px 0;color:#3a231e;font-weight:800}.welcome h1 em{font-style:normal;color:#fff8e9}.welcome p{font-size:14px;line-height:1.75;color:#67422e;max-width:290px;margin:0}
+.door-wrap{position:absolute;z-index:7;left:50%;bottom:9.5%;width:clamp(260px,28vw,425px);height:clamp(350px,66%,555px);transform:translateX(-50%);perspective:1200px;cursor:pointer;transition:opacity .9s,filter .9s,transform 1s;filter:drop-shadow(0 27px 26px rgba(82,39,21,.25))}.door-wrap:focus-visible{outline:3px solid #fff;outline-offset:7px}.door-frame{position:absolute;inset:0;border:18px solid #a45536;border-bottom:0;border-radius:47% 47% 3px 3px / 29% 29% 3px 3px;background:#452d32;box-shadow:inset 0 0 0 7px #d89459,0 0 0 5px #e7a368}.door-interior{position:absolute;inset:17px 17px 0;border-radius:45% 45% 0 0 / 26% 26% 0 0;overflow:hidden;background:radial-gradient(ellipse at 50% 15%,#ffe6a7,#f4aa60 50%,#b76a4c)}.inside-office{position:absolute;inset:0;opacity:.16;transition:opacity 1s}.inside-office svg{height:100%;width:100%}.door-leaf{position:absolute;top:16px;bottom:0;width:calc(50% - 16px);background:linear-gradient(105deg,#a75a39,#d38450 42%,#ac5c39);border:4px solid #8b452f;box-shadow:inset 0 0 0 7px rgba(255,213,157,.25),inset 0 0 0 11px rgba(107,52,35,.35);backface-visibility:hidden;transform-style:preserve-3d;transition:transform 1.65s cubic-bezier(.2,.68,.12,1)}.door-leaf:before{content:"";position:absolute;inset:15% 14% 10%;border:3px solid rgba(94,40,27,.45);border-radius:40% 40% 4px 4px / 15% 15% 4px 4px}.door-left{left:16px;transform-origin:left center;border-radius:46% 0 0 0 / 24% 0 0 0}.door-right{right:16px;transform-origin:right center;border-radius:0 46% 0 0 / 0 24% 0 0}.handle{position:absolute;top:56%;width:9px;height:48px;border-radius:12px;background:linear-gradient(90deg,#a66b1e,#ffe2a2,#b67929);box-shadow:2px 3px 7px rgba(64,30,20,.4)}.door-left .handle{right:14px}.door-right .handle{left:14px}.enter-cue{position:absolute;z-index:10;left:50%;bottom:2.3%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;color:#653921;font-family:Manrope,sans-serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;cursor:pointer;border:0;background:transparent;padding:10px;white-space:nowrap;transition:opacity .4s}.cue-circle{display:grid;place-items:center;width:30px;height:30px;border:1px solid rgba(99,56,30,.55);border-radius:50%;animation:bob 2.2s ease-in-out infinite}.entrance[data-phase="idle"] .door-wrap:hover{filter:drop-shadow(0 22px 30px rgba(82,39,21,.32)) brightness(1.04)}
+.night-room{opacity:0;background:radial-gradient(ellipse at 50% 38%,#19346a 0%,#0c1834 42%,#050a19 100%);transition:opacity 1.7s ease}.night-room:before{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(159,186,255,.065) 1px,transparent 1px),linear-gradient(rgba(159,186,255,.065) 1px,transparent 1px);background-size:85px 85px;mask-image:radial-gradient(ellipse at center,#000,transparent 83%)}.night-ring{position:absolute;width:min(64vw,650px);aspect-ratio:1;left:50%;top:40%;transform:translate(-50%,-50%) scale(.6);border-radius:50%;border:1px solid rgba(131,155,255,.4);box-shadow:0 0 0 46px rgba(106,90,245,.035),0 0 0 93px rgba(106,90,245,.035),inset 0 0 85px rgba(85,99,249,.07);opacity:0;transition:transform 2s,opacity 1.4s}.night-ring:before,.night-ring:after{content:"";position:absolute;width:15px;height:15px;background:#aa85ff;box-shadow:0 0 25px #9d6cff;border-radius:50%;top:16%;left:14%}.night-ring:after{top:80%;left:86%;width:9px;height:9px;background:#79bcff}
+.flight-layer{position:absolute;z-index:9;inset:0;pointer-events:none;perspective:900px}.flight-item{position:absolute;left:50%;top:55%;display:flex;align-items:center;gap:8px;min-width:112px;padding:12px 14px;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.95);border-radius:13px;box-shadow:0 18px 35px rgba(94,43,37,.22);color:#2d3551;font-family:Manrope,sans-serif;font-size:10px;font-weight:800;letter-spacing:.025em;opacity:0;transform:translate(-50%,-50%) scale(.1);will-change:transform,opacity;transition:transform 1.65s cubic-bezier(.16,.76,.22,1),opacity .35s,background .8s,color .8s}.flight-item .glyph{font-size:23px;line-height:1}.flight-item:nth-child(3n){background:#e9e2ff}.flight-item:nth-child(4n){background:#d9f8e9}.flight-item:nth-child(5n){background:#fff1d8}.flight-item:nth-child(6n){background:#dfeeff}.entrance[data-phase="scatter"] .flight-item{opacity:1;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) rotate(var(--rot)) scale(1)}.entrance[data-phase="organize"] .flight-item{opacity:.8;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) rotate(0deg) scale(.62);background:rgba(35,57,103,.95);border-color:#5672ba;color:#dbe7ff;box-shadow:0 0 28px rgba(87,119,255,.18)}.entrance[data-phase="complete"] .flight-item{opacity:0;transform:translate(calc(-50% + var(--tx)),calc(-50% + var(--ty))) scale(.12)}
+.reveal-content{position:absolute;z-index:12;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:75px 22px 45px;color:white;opacity:0;transform:translateY(30px);pointer-events:none;transition:opacity 1.2s,transform 1.2s}.reveal-content .eyebrow{color:#a9bdf7}.qincept-logo{width:clamp(190px,23vw,335px);height:90px;object-fit:contain;filter:brightness(1.45) drop-shadow(0 8px 35px rgba(98,78,255,.3))}.qincept-fallback{display:none;font-family:Manrope,sans-serif;font-size:clamp(43px,5.8vw,76px);font-weight:800;letter-spacing:-.09em;color:#c6cedc}.qincept-fallback b{color:#793aff}.reveal-content h2{font-family:Manrope,sans-serif;max-width:850px;font-size:clamp(31px,4.5vw,62px);line-height:1.13;letter-spacing:-.065em;margin:14px 0 16px;font-weight:800}.reveal-content h2 span{color:#a48cff}.reveal-content>p{color:#c2cce5;font-size:clamp(13px,1.3vw,16px);max-width:580px;line-height:1.75;margin:0}.capability-grid{width:min(850px,95%);display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:40px}.capability{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-height:100px;border:1px solid rgba(155,180,255,.23);border-radius:16px;background:rgba(151,175,255,.075);backdrop-filter:blur(12px);font-size:11px;font-weight:700;color:#e6eaff;transition:transform .3s,border-color .3s,background .3s}.capability span{font-size:26px}.capability:hover{transform:translateY(-7px);border-color:#ac8dff;background:rgba(117,86,241,.17)}.reveal-link{margin-top:30px;display:inline-flex;align-items:center;gap:14px;color:#fff;font-size:12px;font-weight:800;border-bottom:1px solid rgba(255,255,255,.5);padding:9px 0;pointer-events:auto}.reveal-link svg{transition:transform .2s}.reveal-link:hover svg{transform:translateX(5px)}
+.entrance[data-phase="opening"] .door-left,.entrance[data-phase="scatter"] .door-left,.entrance[data-phase="organize"] .door-left,.entrance[data-phase="complete"] .door-left{transform:rotateY(-117deg)}.entrance[data-phase="opening"] .door-right,.entrance[data-phase="scatter"] .door-right,.entrance[data-phase="organize"] .door-right,.entrance[data-phase="complete"] .door-right{transform:rotateY(117deg)}.entrance:not([data-phase="idle"]) .enter-cue{opacity:0;pointer-events:none}.entrance:not([data-phase="idle"]) .inside-office{opacity:1}.entrance:not([data-phase="idle"]) .welcome{opacity:0;transform:translateY(-18px)}.entrance[data-phase="organize"] .night-room,.entrance[data-phase="complete"] .night-room{opacity:1}.entrance[data-phase="organize"] .warm-room,.entrance[data-phase="complete"] .warm-room{opacity:0}.entrance[data-phase="organize"] .night-ring,.entrance[data-phase="complete"] .night-ring{opacity:1;transform:translate(-50%,-50%) scale(1)}.entrance[data-phase="organize"] .door-wrap,.entrance[data-phase="complete"] .door-wrap{opacity:0;transform:translateX(-50%) scale(1.2);pointer-events:none}.entrance[data-phase="complete"] .reveal-content{opacity:1;transform:translateY(0);pointer-events:auto}
+.stage-footer{position:absolute;z-index:11;left:4.7%;bottom:4%;font-family:Manrope,sans-serif;font-size:10px;letter-spacing:.16em;color:rgba(92,43,27,.75);font-weight:800;transition:color 1.5s}.entrance[data-phase="complete"] .stage-footer{color:#a2b4e4}.scroll-indicator{position:absolute;z-index:12;right:5%;bottom:4%;color:#b5c7ed;opacity:0;transition:opacity 1s;display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.12em;font-weight:800}.entrance[data-phase="complete"] .scroll-indicator{opacity:1}
+.content-wrap{max-width:var(--max);margin:auto;padding:0 30px}.section{padding:120px 0}.section-tag{font-family:Manrope,sans-serif;text-transform:uppercase;letter-spacing:.19em;color:var(--purple);font-size:11px;font-weight:800;display:flex;align-items:center;gap:10px}.section-tag:before{content:"";display:inline-block;width:20px;height:20px;border:2px solid var(--purple);border-radius:50%}.section h2{font-family:Manrope,sans-serif;font-size:clamp(36px,4.4vw,61px);line-height:1.12;letter-spacing:-.06em;margin:25px 0;font-weight:800}.section-lead{max-width:660px;color:#687080;font-size:17px;line-height:1.8}.intro-layout{display:grid;grid-template-columns:1fr .95fr;gap:90px;align-items:center}.geometry-art{position:relative;height:410px}.geo-square{position:absolute;top:30px;left:15%;width:63%;height:72%;background:linear-gradient(135deg,#7b40f5,#5012cd);border-radius:28px;box-shadow:0 45px 65px rgba(94,23,235,.18);transform:rotate(-8deg)}.geo-circle{position:absolute;top:20%;right:0;width:61%;aspect-ratio:1;border-radius:50%;background:#111a36;box-shadow:inset 0 0 0 28px #222f54,0 35px 50px rgba(20,31,63,.18)}.geo-circle:before{content:"";position:absolute;inset:25%;border:2px solid #b4a1f7;border-radius:50%}.geo-art-card{position:absolute;bottom:3%;left:1%;padding:22px 26px;background:white;border:1px solid #e9e7f4;box-shadow:0 18px 50px rgba(32,23,72,.13);border-radius:16px;font-size:13px;font-weight:800;max-width:260px}.geo-art-card span{display:block;color:var(--purple);font-size:10px;letter-spacing:.13em;margin-bottom:8px}
+.system-section{background:#0a1022;color:white;position:relative;overflow:hidden}.system-section:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(137,160,243,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(137,160,243,.055) 1px,transparent 1px);background-size:100px 100px}.system-section .content-wrap{position:relative}.system-section .section-tag{color:#ad8cff}.system-section .section-tag:before{border-color:#ad8cff}.system-section h2{max-width:800px}.system-section .section-lead{color:#aab5d3}.system-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:55px}.system-card{min-height:210px;padding:28px;border-radius:20px;border:1px solid #28365b;background:linear-gradient(145deg,rgba(35,47,85,.7),rgba(13,20,42,.86));position:relative;overflow:hidden;transition:transform .25s,border-color .25s}.system-card:hover{transform:translateY(-6px);border-color:#8a65e8}.system-card:after{content:"";position:absolute;width:100px;height:100px;border:1px solid rgba(165,143,255,.12);border-radius:50%;right:-28px;top:-30px}.system-icon{display:grid;place-items:center;width:46px;height:46px;border-radius:13px;background:#2c225c;color:#d8c8ff;font-size:22px}.system-card h3{font-family:Manrope,sans-serif;font-size:18px;letter-spacing:-.03em;margin:22px 0 9px}.system-card p{font-size:13px;line-height:1.65;color:#aeb9d2;margin:0}
+.audience-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}.audience-card{padding:36px;border:1px solid #e1e2ed;background:rgba(255,255,255,.9);border-radius:22px;min-height:285px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s}.audience-card:hover{transform:translateY(-5px);box-shadow:0 25px 60px rgba(31,24,61,.09)}.audience-card:after{content:"";position:absolute;right:-70px;top:-70px;width:200px;height:200px;border:26px solid #f0e9ff;border-radius:50%}.audience-card:nth-child(2):after{border-radius:30px;transform:rotate(22deg)}.audience-card small{font-size:10px;letter-spacing:.2em;color:var(--purple);font-weight:800}.audience-card h3{font-family:Manrope,sans-serif;font-size:28px;letter-spacing:-.05em;margin:20px 0 12px}.audience-card p{font-size:14px;line-height:1.75;color:#667083;max-width:370px}.audience-card a{display:inline-flex;align-items:center;gap:9px;color:var(--purple);font-size:12px;font-weight:800;margin-top:10px}
+.final-cta{background:#ede7ff;border:1px solid #e0d4ff;border-radius:30px;padding:70px 65px;display:flex;justify-content:space-between;align-items:center;gap:25px;position:relative;overflow:hidden}.final-cta:after{content:"";position:absolute;right:-100px;top:-130px;width:380px;height:380px;border:35px solid rgba(94,23,235,.08);border-radius:50%;pointer-events:none}.final-cta h2{font-size:clamp(30px,3.8vw,49px);margin:12px 0}.final-cta p{color:#60647c;font-size:14px}.solid-link{display:inline-flex;align-items:center;gap:15px;border-radius:999px;background:var(--purple);color:white;padding:18px 25px;font-size:13px;font-weight:800;white-space:nowrap;z-index:1}.footer{border-top:1px solid #e3e4ed;padding:30px 0;background:#fff}.footer .content-wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;color:#717787;font-size:12px}.footer-links{display:flex;gap:24px}.footer-links a:hover{color:var(--purple)}.rise{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}.rise.visible{opacity:1;transform:none}@keyframes bob{50%{transform:translateY(-5px)}}
+@media(max-width:900px){.topbar{padding:0 22px}.nav-links{gap:17px}.nav-cta{padding:11px 15px}.welcome{left:25px;top:8%;max-width:240px}.welcome h1{font-size:34px}.welcome p{font-size:12px}.door-wrap{left:57%}.capability-grid{grid-template-columns:repeat(3,1fr);max-width:540px;margin-top:23px}.capability{min-height:76px;gap:6px}.capability span{font-size:21px}.reveal-content h2{font-size:37px}.intro-layout{gap:30px}.system-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.topbar{height:68px;padding:0 19px}.brand{min-width:0}.brand img{width:116px}.menu-button{display:block;margin-left:auto}.nav-cta{font-size:10px;padding:10px 13px}.nav-links{display:none;position:absolute;left:0;right:0;top:68px;background:white;flex-direction:column;align-items:stretch;padding:22px 25px;gap:0;border-bottom:1px solid #e5e2ed;box-shadow:0 12px 20px #15152914}.nav-links.open{display:flex}.nav-links a{padding:12px 0}.entrance{height:calc(100svh - 68px);min-height:610px}.welcome{top:5%;left:22px;max-width:calc(100% - 44px)}.welcome h1{font-size:clamp(30px,8vw,42px);max-width:290px;margin:9px 0}.welcome p{display:none}.door-wrap{width:270px;height:390px;left:50%;bottom:10%}.window{width:29%;height:30%;top:37%;left:-7%;opacity:.65}.room-furniture{width:28%;height:21%;bottom:12%;right:-6%}.office-plant.left{left:-2%;transform:scale(.65)}.office-plant.right{right:-2%;transform:scale(.6)}.enter-cue{bottom:1%}.stage-footer{font-size:8px;left:16px;bottom:3%}.scroll-indicator{font-size:8px;right:16px;bottom:3%}.flight-item{min-width:85px;padding:8px;font-size:8px}.flight-item .glyph{font-size:18px}.reveal-content{padding:25px 15px}.qincept-logo{height:65px;width:190px}.reveal-content h2{font-size:clamp(27px,7vw,38px);margin:10px 0}.reveal-content>p{font-size:12px}.capability-grid{width:100%;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:22px}.capability{min-height:74px;border-radius:11px;font-size:9px;gap:7px}.capability span{font-size:20px}.reveal-link{margin-top:20px}.content-wrap{padding:0 22px}.section{padding:82px 0}.section h2{font-size:35px}.section-lead{font-size:15px}.intro-layout{grid-template-columns:1fr;gap:20px}.geometry-art{height:310px}.system-grid{grid-template-columns:1fr;gap:11px;margin-top:35px}.system-card{min-height:175px}.audience-layout{grid-template-columns:1fr}.audience-card{min-height:235px;padding:28px}.final-cta{padding:45px 28px;display:block}.final-cta .solid-link{margin-top:18px}.footer .content-wrap{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap;gap:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}.rise{opacity:1;transform:none}}
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+/* QUERILY LABS — DARK GEOMETRIC SYSTEM
+   Ink charcoal #0B0D16 · Espresso #21151A · Qincept violet #5E17EB
+   Circles = continuity; squares = institutional structure. */
+:root {
+  --purple:#5e17eb;
+  --ink:#f5f3ff;
+  --navy:#0b0d16;
+  --slate:#a6a3b7;
+}
+body { background:#0b0d16; color:#f5f3ff; }
+.topbar {
+  background:rgba(11,13,22,.97);
+  border-bottom:1px solid rgba(174,146,255,.17);
+  box-shadow:0 12px 50px rgba(0,0,0,.12);
+}
+.brand { min-width:143px; }
+.brand img {
+  width:132px;
+  max-height:48px;
+  background:#fff;
+  border-radius:11px;
+  padding:7px 11px;
+  object-fit:contain;
+}
+.brand-fallback { color:#f8f6ff; }
+.nav-links a { color:#c4c1d4; }
+.nav-links a:hover,.nav-links a[aria-current] { color:#c1a5ff; }
+.nav-links a[aria-current]::after {
+  content:"";display:block;height:2px;margin-top:5px;
+  background:#5e17eb;border-radius:3px;
+}
+.nav-cta { background:#5e17eb; box-shadow:0 12px 34px rgba(94,23,235,.26); }
+.section {
+  position:relative;
+  background:
+    radial-gradient(circle at 90% 16%,rgba(94,23,235,.12),transparent 31%),
+    linear-gradient(145deg,#10121e 0%,#0b0d16 55%,#171018 100%);
+  overflow:hidden;
+}
+.section:before {
+  content:"";position:absolute;pointer-events:none;
+  width:clamp(160px,25vw,380px);aspect-ratio:1;
+  right:-6%;top:8%;
+  border:1px solid rgba(172,144,255,.13);
+  border-radius:50%;
+  box-shadow:0 0 0 35px rgba(94,23,235,.025),0 0 0 80px rgba(94,23,235,.015);
+}
+.section:after {
+  content:"";position:absolute;pointer-events:none;
+  width:clamp(95px,14vw,200px);aspect-ratio:1;
+  left:-6%;bottom:4%;
+  border:1px solid rgba(171,140,255,.13);
+  border-radius:10px;transform:rotate(12deg);
+}
+.section .content-wrap { position:relative;z-index:1; }
+.geo-bg:before {
+  z-index:0;
+  background-image:
+    linear-gradient(90deg,rgba(177,146,255,.045) 1px,transparent 1px),
+    linear-gradient(rgba(177,146,255,.045) 1px,transparent 1px),
+    radial-gradient(circle at 50% 50%,transparent 0 28px,rgba(164,131,255,.10) 29px 30px,transparent 31px);
+  background-size:108px 108px,108px 108px,216px 216px;
+  mask-image:linear-gradient(90deg,transparent,#000 13%,#000 87%,transparent);
+}
+.section-tag { color:#bb9aff; }
+.section-tag:before { border-color:#8d59ff; }
+.section h2 { color:#f8f6ff; }
+.section-lead { color:#b9b6c9; }
+.geometry-art .geo-square { box-shadow:0 35px 80px rgba(94,23,235,.22); }
+.geo-circle {
+  background:#21152f;
+  box-shadow:inset 0 0 0 28px #2f2050,0 35px 60px rgba(0,0,0,.27);
+}
+.geo-art-card {
+  background:#191a2a;color:#f3eeff;
+  border-color:rgba(178,145,255,.27);
+  box-shadow:0 18px 50px rgba(0,0,0,.25);
+}
+.geo-art-card span { color:#b99aff; }
+.system-section {
+  background:linear-gradient(120deg,#0a0e1d 0%,#151127 55%,#0a0e1d 100%);
+}
+.system-section:before {
+  background-image:
+    linear-gradient(rgba(137,160,243,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(137,160,243,.055) 1px,transparent 1px),
+    radial-gradient(circle,transparent 0 32px,rgba(166,128,255,.09) 33px 34px,transparent 35px);
+  background-size:100px 100px,100px 100px,200px 200px;
+}
+.system-card {
+  border-color:rgba(171,151,242,.24);
+  background:linear-gradient(145deg,rgba(45,37,78,.72),rgba(13,18,38,.94));
+}
+.system-card p { color:#b7b4ca; }
+.audience-card {
+  border-color:rgba(172,144,255,.23);
+  background:linear-gradient(140deg,rgba(34,27,48,.96),rgba(15,19,34,.96));
+  box-shadow:0 20px 40px rgba(0,0,0,.12);
+}
+.audience-card:hover { box-shadow:0 28px 65px rgba(0,0,0,.24); }
+.audience-card:after { border-color:rgba(94,23,235,.13); }
+.audience-card small,.audience-card a { color:#bc9bff; }
+.audience-card h3 { color:#fff; }
+.audience-card p { color:#bcb8cb; }
+.final-cta {
+  background:linear-gradient(115deg,#251a37,#171522 55%,#25141d);
+  border:1px solid rgba(171,134,255,.33);
+}
+.final-cta:after { border-color:rgba(94,23,235,.16); }
+.final-cta p { color:#bbb4c8; }
+.footer { background:#080a11;border-top:1px solid rgba(174,146,255,.17); }
+.footer .content-wrap { color:#a6a1b8; }
+.footer-links a:hover { color:#c3a7ff; }
+@media(max-width:620px){
+  .nav-links { background:#12131f;border-bottom-color:rgba(174,146,255,.24); }
+  .nav-links a { color:#e4def7; }
+  .nav-links a[aria-current]::after { display:none; }
+  .menu-button { color:#fff; }
+  .brand img { width:110px;padding:5px 7px; }
+}
 
-  <title>Querily Labs — Institutional Communication Infrastructure</title>
-
-  <meta
-    name="description"
-    content="Querily Labs builds Qincept, institutional communication infrastructure designed to connect communication with responsibility, decisions, memory, and continuity."
-  />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="/styles.css" />
-</head>
-
-
+</style></head>
 <body>
-
-  <!-- NAVIGATION -->
-
-  <header class="nav">
-    <div class="nav-inner">
-
-      <a class="brand" href="/">
-        <img
-          src="/assets/logo/querily-logo.png"
-          alt="Querily Labs"
-        />
-      </a>
-
-      <nav class="nav-links">
-
-        <a href="/products.html">
-          Products
-        </a>
-
-        <a href="/institutional-memory.html">
-          Memory
-        </a>
-
-        <a href="/about.html">
-          About
-        </a>
-
-        <a href="/articles.html">
-          Articles
-        </a>
-
-        <a href="/founder.html">
-          Founder
-        </a>
-
-        <a href="/contact.html">
-          Contact
-        </a>
-
-      </nav>
-
-      <div class="nav-cta">
-
-        <a
-          class="btn primary"
-          href="/contact.html"
-        >
-          Request demo
-        </a>
-
-      </div>
-
-    </div>
-  </header>
-
-
-  <main class="wrap">
-
-
-    <!-- HERO -->
-
-    <section class="hero hero-split reveal">
-
-      <div>
-
-        <div class="kicker">
-          Qincept • Institutional Communication Infrastructure
-        </div>
-
-        <h1>
-          Communication that becomes
-          institutional context.
-        </h1>
-
-        <p class="sub">
-          Qincept helps organizations connect communication
-          with roles, responsibility, decisions, approvals,
-          outcomes, memory, and continuity.
-        </p>
-
-        <div class="ctaRow">
-
-          <a
-            class="btn primary"
-            href="/products.html"
-          >
-            Explore Qincept
-          </a>
-
-          <a
-            class="btn"
-            href="/institutional-memory.html"
-          >
-            Understand Memory
-          </a>
-
-        </div>
-
-      </div>
-
-
-      <div
-        class="system-visual"
-        aria-label="Qincept institutional communication infrastructure"
-      >
-
-        <div class="node main-node">
-          Qincept
-        </div>
-
-        <div class="line"></div>
-
-        <div class="mini-grid">
-
-          <span>Communication</span>
-          <span>Roles</span>
-          <span>Decisions</span>
-          <span>Approvals</span>
-          <span>Memory</span>
-          <span>Continuity</span>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- PROBLEM -->
-
-    <section class="dark-panel reveal">
-
-      <div class="section-head">
-
-        <div class="tag">
-          The problem
-        </div>
-
-        <h2>
-          Institutions communicate constantly.
-          Context gets fragmented.
-        </h2>
-
-        <p>
-          Important decisions, responsibilities, approvals,
-          and operational knowledge can become scattered
-          across conversations, systems, and people.
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-        <div class="card dark-card third">
-
-          <h3>
-            Fragmented context
-          </h3>
-
-          <p class="muted">
-            Important information becomes separated
-            across conversations and systems.
-          </p>
-
-        </div>
-
-
-        <div class="card dark-card third">
-
-          <h3>
-            Unclear responsibility
-          </h3>
-
-          <p class="muted">
-            Ownership becomes difficult to follow
-            as work moves between people and roles.
-          </p>
-
-        </div>
-
-
-        <div class="card dark-card third">
-
-          <h3>
-            Lost continuity
-          </h3>
-
-          <p class="muted">
-            Important operating context can disappear
-            when people and responsibilities change.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- QINCEPT -->
-
-    <section class="section reveal">
-
-      <div class="section-head">
-
-        <div class="tag">
-          Qincept
-        </div>
-
-        <h2>
-          Institutional Communication Infrastructure.
-        </h2>
-
-        <p>
-          Qincept is designed to connect communication
-          with the institutional structure and context
-          surrounding it.
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-        <div class="card third">
-
-          <div class="tag">
-            Communication
-          </div>
-
-          <h3>
-            Communicate in institutional context.
-          </h3>
-
-          <p class="muted">
-            Connect communication with people,
-            roles, and organizational responsibility.
-          </p>
-
-        </div>
-
-
-        <div class="card third">
-
-          <div class="tag">
-            Responsibility
-          </div>
-
-          <h3>
-            Make ownership visible.
-          </h3>
-
-          <p class="muted">
-            Keep responsibility connected to
-            institutional work and decisions.
-          </p>
-
-        </div>
-
-
-        <div class="card third">
-
-          <div class="tag">
-            Continuity
-          </div>
-
-          <h3>
-            Carry context forward.
-          </h3>
-
-          <p class="muted">
-            Preserve important institutional context
-            as people and roles change.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- COMMUNICATION TO MEMORY -->
-
-    <section class="dark-panel reveal">
-
-      <div class="section-head">
-
-        <div class="tag">
-          Institutional context
-        </div>
-
-        <h2>
-          What happens after the conversation matters.
-        </h2>
-
-        <p>
-          Qincept is designed so important communication
-          can remain connected to responsibility,
-          decisions, outcomes, memory, and continuity.
-        </p>
-
-      </div>
-
-
-      <div class="memory-flow dark-flow">
-
-        <div class="flow-card">
-          Communication
-        </div>
-
-        <div class="arrow">
-          →
-        </div>
-
-        <div class="flow-card">
-          Responsibility
-        </div>
-
-        <div class="arrow">
-          →
-        </div>
-
-        <div class="flow-card">
-          Decision
-        </div>
-
-        <div class="arrow">
-          →
-        </div>
-
-        <div class="flow-card">
-          Outcome
-        </div>
-
-        <div class="arrow">
-          →
-        </div>
-
-        <div class="flow-card strong">
-          Memory
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- MEMORY -->
-
-    <section class="section reveal">
-
-      <div class="section-head">
-
-        <div class="tag">
-          Institutional Memory
-        </div>
-
-        <h2>
-          Important context should outlast
-          the conversation.
-        </h2>
-
-        <p>
-          Qincept helps preserve important institutional
-          context so organizations do not have to
-          repeatedly reconstruct what happened,
-          what was decided, and who was responsible.
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-        <div class="card half">
-
-          <h3>
-            Decision context
-          </h3>
-
-          <p class="muted">
-            Preserve the context surrounding important
-            institutional decisions.
-          </p>
-
-        </div>
-
-
-        <div class="card half">
-
-          <h3>
-            Responsibility continuity
-          </h3>
-
-          <p class="muted">
-            Keep relevant context connected to institutional
-            responsibility as role holders change.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="ctaRow">
-
-        <a
-          class="btn"
-          href="/institutional-memory.html"
-        >
-          Why institutional memory matters
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- WHY INFRASTRUCTURE -->
-
-    <section class="wealth-panel reveal">
-
-      <div class="section-head">
-
-        <div class="tag">
-          Why infrastructure
-        </div>
-
-        <h2>
-          More than another communication channel.
-        </h2>
-
-        <p>
-          Qincept is designed as an institutional layer
-          connecting communication with organizational
-          context, responsibility, memory, and continuity.
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-        <div class="card third">
-
-          <h3>
-            Role-aware
-          </h3>
-
-          <p class="muted">
-            Connect institutional activity with
-            organizational roles and responsibility.
-          </p>
-
-        </div>
-
-
-        <div class="card third">
-
-          <h3>
-            Context-aware
-          </h3>
-
-          <p class="muted">
-            Keep communication connected to
-            the context surrounding institutional work.
-          </p>
-
-        </div>
-
-
-        <div class="card third">
-
-          <h3>
-            Continuity-aware
-          </h3>
-
-          <p class="muted">
-            Preserve relevant institutional context
-            through organizational change.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- QUERILY LABS -->
-
-    <section class="section reveal">
-
-      <div class="section-head">
-
-        <div class="tag">
-          Querily Labs
-        </div>
-
-        <h2>
-          Building infrastructure for
-          institutional communication.
-        </h2>
-
-        <p>
-          Querily Labs is building Qincept around a simple
-          principle: important institutional communication
-          should remain useful beyond the moment in which
-          it happens.
-        </p>
-
-      </div>
-
-
-      <div class="ctaRow">
-
-        <a
-          class="btn"
-          href="/about.html"
-        >
-          About Querily Labs
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- CTA -->
-
-    <section class="waitlist reveal">
-
-      <div>
-
-        <div class="tag">
-          Qincept
-        </div>
-
-        <h2>
-          Explore Institutional
-          Communication Infrastructure.
-        </h2>
-
-        <p class="muted">
-          Talk to Querily Labs about Qincept
-          and institutional pilot opportunities.
-        </p>
-
-      </div>
-
-
-      <div class="waitlist-side">
-
-        <p>
-          Explore how Qincept could fit your
-          organization's communication environment.
-        </p>
-
-        <a
-          class="btn primary"
-          href="/contact.html"
-        >
-          Request discussion
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-
-    <footer class="footer">
-
-      <div>
-        © <span id="y"></span>
-        Querily Labs Pvt. Ltd.
-        All rights reserved.
-      </div>
-
-      <div class="footer-links">
-
-        <a href="/products.html">
-          Products
-        </a>
-
-        <a href="/institutional-memory.html">
-          Memory
-        </a>
-
-        <a href="/about.html">
-          About
-        </a>
-
-        <a href="/contact.html">
-          Contact
-        </a>
-
-      </div>
-
-    </footer>
-
-  </main>
-
-
-  <script>
-
-    document.getElementById("y").textContent =
-      new Date().getFullYear();
-
-    const reveals =
-      document.querySelectorAll(".reveal");
-
-    if (reveals.length > 0) {
-
-      const observer =
-        new IntersectionObserver(
-          entries => {
-
-            entries.forEach(entry => {
-
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-              }
-
-            });
-
-          },
-          {
-            threshold: 0.08
-          }
-        );
-
-      reveals.forEach(el =>
-        observer.observe(el)
-      );
-
-    }
-
-  </script>
-
-</body>
-</html>
+<header class="topbar">
+ <a class="brand" href="/" aria-label="Querily Labs homepage"><img src="assets/logo/querily-logo.png" alt="Querily Labs" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"/><span class="brand-fallback"><b>q</b>uerily</span></a>
+ <button class="menu-button" id="menuButton" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+ <nav class="nav-links" id="navLinks" aria-label="Primary navigation"><a href="/" aria-current="page">Home</a><a href="/products.html">Product</a><a href="/about.html">About</a><a href="/articles.html">Articles</a><a href="/founder.html">Founder</a><a href="/contact.html">Contact</a></nav>
+ <a class="nav-cta" href="/contact.html">Request demo <span aria-hidden="true">↗</span></a>
+</header>
+<main>
+<section class="entrance" id="entrance" data-phase="idle" aria-label="Interactive Qincept entrance">
+ <div class="warm-room" aria-hidden="true"><div class="wall-disc"></div><div class="wall-square"></div><div class="window"></div><div class="office-plant left"><i></i><i></i><i></i></div><div class="office-plant right"><i></i><i></i><i></i></div><div class="room-furniture"></div></div>
+ <div class="night-room" aria-hidden="true"><div class="night-ring"></div></div>
+ <div class="welcome"><div class="eyebrow">Querily Labs / An invitation</div><h1>Every organization has a story.<br><em>Let it continue.</em></h1><p>Beyond conversations. Beyond scattered records. Discover what happens when everything finds its place.</p></div>
+ <div class="door-wrap" id="door" role="button" tabindex="0" aria-label="Open the doors to explore Qincept">
+  <div class="door-frame"></div><div class="door-interior"><div class="inside-office">
+  <svg viewBox="0 0 300 440" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+   <defs><linearGradient id="roomLight" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#ffe5a5"/><stop offset="1" stop-color="#e68a4d"/></linearGradient></defs>
+   <rect width="300" height="440" fill="url(#roomLight)"/><path d="M0 300H300V440H0Z" fill="#b87756"/><path d="M0 300L150 230L300 300" fill="#f8b46d" opacity=".65"/>
+   <rect x="26" y="83" width="105" height="140" rx="10" fill="#a96842"/><rect x="35" y="92" width="87" height="122" rx="5" fill="#a9e4f3"/><path d="M78 92V214M35 151H122" stroke="#f3c486" stroke-width="8"/>
+   <rect x="178" y="75" width="91" height="113" rx="8" fill="#d88951"/><rect x="189" y="87" width="68" height="80" rx="4" fill="#fff0d0"/><path d="M200 103H245M200 120H237M200 137H246" stroke="#d6a67d" stroke-width="5" stroke-linecap="round"/>
+   <rect x="65" y="293" width="172" height="16" rx="6" fill="#7f4a40"/><path d="M84 309V406M217 309V406" stroke="#7f4a40" stroke-width="14"/><rect x="113" y="233" width="88" height="58" rx="6" fill="#444f66"/><rect x="121" y="241" width="72" height="42" rx="3" fill="#80c3d7"/><path d="M152 291V302" stroke="#444f66" stroke-width="7"/>
+   <rect x="15" y="250" width="42" height="145" rx="6" fill="#b26848"/><rect x="242" y="235" width="40" height="160" rx="6" fill="#b26848"/><circle cx="38" cy="238" r="26" fill="#578b57"/><circle cx="261" cy="227" r="27" fill="#5b8b58"/>
+   <circle cx="152" cy="42" r="15" fill="#fff2c5"/><path d="M152 0V28" stroke="#775343" stroke-width="6"/>
+  </svg></div></div>
+  <div class="door-leaf door-left"><span class="handle"></span></div><div class="door-leaf door-right"><span class="handle"></span></div>
+ </div>
+ <button class="enter-cue" id="enterCue" type="button" aria-label="Open the doors"><span class="cue-circle" aria-hidden="true">↗</span> Enter the organization</button>
+ <div class="flight-layer" aria-hidden="true" id="flightLayer"></div>
+ <div class="reveal-content" id="revealContent" aria-hidden="true">
+  <div class="eyebrow">The future of institutional continuity</div>
+  <img class="qincept-logo" src="assets/logo/qincept-logo.png" alt="Qincept" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/><div class="qincept-fallback"><b>q</b>incept</div>
+  <h2>From scattered activity<br>to <span>lasting continuity.</span></h2>
+  <p>Communication, roles, decisions, approvals and institutional memory — connected in one operating context.</p>
+  <div class="capability-grid"><div class="capability"><span>◉</span>Communication</div><div class="capability"><span>▦</span>Roles</div><div class="capability"><span>✓</span>Approvals</div><div class="capability"><span>◇</span>Decisions</div><div class="capability"><span>◎</span>Memory</div><div class="capability"><span>∞</span>Continuity</div></div>
+  <a class="reveal-link" href="#why-continuity">Discover what connects it all <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16m-7-7 7 7-7 7"/></svg></a>
+ </div>
+ <div class="stage-footer">STRUCTURE <span aria-hidden="true">·</span> MEMORY <span aria-hidden="true">·</span> CONTINUITY</div><a class="scroll-indicator" href="#why-continuity">SCROLL TO EXPLORE ↓</a>
+</section>
+<section class="section geo-bg" id="why-continuity"><div class="content-wrap intro-layout"><div class="rise"><div class="section-tag">01 / The idea</div><h2>Organizations move forward.<br>Context should move with them.</h2><p class="section-lead">Work moves through people, conversations, decisions and handovers. Too often, the context connecting them becomes fragmented. Querily Labs is building a more durable foundation for institutional work.</p></div><div class="geometry-art rise" aria-hidden="true"><div class="geo-square"></div><div class="geo-circle"></div><div class="geo-art-card"><span>THE QUERILY PRINCIPLE</span>What matters should remain connected.</div></div></div></section>
+<section class="section system-section" id="qincept"><div class="content-wrap"><div class="rise"><div class="section-tag">02 / Meet Qincept</div><h2>One operating context.<br>Many connected responsibilities.</h2><p class="section-lead">Qincept is designed to link the work an institution does with the responsibility, reasoning and memory that make it meaningful.</p></div><div class="system-grid">
+<article class="system-card rise"><div class="system-icon">◉</div><h3>Communication</h3><p>Institution-aware communication that connects people, teams and roles.</p></article>
+<article class="system-card rise"><div class="system-icon">▦</div><h3>Roles & ownership</h3><p>Connect work to durable institutional responsibilities, not just accounts.</p></article>
+<article class="system-card rise"><div class="system-icon">◇</div><h3>Decisions</h3><p>Keep important decisions and the context behind them traceable.</p></article>
+<article class="system-card rise"><div class="system-icon">✓</div><h3>Approvals & outcomes</h3><p>Connect authorizations to the work and results they enable.</p></article>
+<article class="system-card rise"><div class="system-icon">◎</div><h3>Institutional memory</h3><p>Retain useful context beyond isolated threads and individual inboxes.</p></article>
+<article class="system-card rise"><div class="system-icon">∞</div><h3>Continuity</h3><p>Carry operating context forward as responsibilities and people change.</p></article>
+</div></div></section>
+<section class="section geo-bg" id="who-we-serve"><div class="content-wrap"><div class="rise"><div class="section-tag">03 / Built for institutions</div><h2>Different institutions.<br>The same need to continue.</h2><p class="section-lead">Whether an organization coordinates complex business operations or academic administration, continuity depends on preserving more than messages.</p></div><div class="audience-layout"><article class="audience-card rise"><small>01 / ENTERPRISES</small><h3>Businesses & organizations</h3><p>Connect decisions, approvals, ownership, teams and institutional knowledge across complex operations.</p><a href="/products.html">Explore the approach ↗</a></article><article class="audience-card rise"><small>02 / EDUCATION</small><h3>Universities & institutions</h3><p>Connect academic and administrative responsibilities across departments, campuses, people and transitions.</p><a href="/products.html">Explore the approach ↗</a></article></div></div></section>
+<section class="section" style="padding-top:10px"><div class="content-wrap"><div class="final-cta rise"><div><div class="section-tag">04 / Start a conversation</div><h2>Build what lasts.</h2><p>Explore Qincept, institutional pilots and collaboration with Querily Labs.</p></div><a class="solid-link" href="/contact.html">Talk to Querily Labs <span aria-hidden="true">↗</span></a></div></div></section>
+</main>
+<footer class="footer"><div class="content-wrap"><span>© <span id="year"></span> Querily Labs Private Limited</span><nav class="footer-links" aria-label="Footer"><a href="/">Home</a><a href="/products.html">Product</a><a href="/about.html">About</a><a href="/articles.html">Articles</a><a href="/founder.html">Founder</a><a href="/contact.html">Contact</a></nav></div></footer>
+<script>
+(()=>{
+ 'use strict';
+ const stage=document.getElementById('entrance');
+ const door=document.getElementById('door');
+ const cue=document.getElementById('enterCue');
+ const layer=document.getElementById('flightLayer');
+ const reveal=document.getElementById('revealContent');
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let started=false;
+ const objects=[
+  ['📄','DOCUMENTS',-.34,-.28,-.22,-.15,-19],
+  ['☎','CALLS',.34,-.31,.22,-.15,17],
+  ['✉','EMAIL',-.43,-.04,-.36,-.04,26],
+  ['▤','RECORDS',.40,.05,.36,-.04,-23],
+  ['✓','APPROVALS',-.28,.22,-.22,.11,20],
+  ['◉','MESSAGES',.29,.25,.22,.11,-15],
+  ['▦','ROLES',-.10,-.37,-.1,-.27,-27],
+  ['◇','DECISIONS',.13,-.38,.1,-.27,25],
+  ['∞','CONTINUITY',-.44,.30,-.35,.22,-15],
+  ['◎','MEMORY',.43,.30,.35,.22,18],
+  ['📁','FILES',-.47,-.24,-.33,-.21,-30],
+  ['▣','OUTCOMES',.47,-.20,.33,-.21,28]
+ ];
+ function makeObjects(){
+  const width=stage.clientWidth,height=stage.clientHeight;
+  const frag=document.createDocumentFragment();
+  objects.forEach(([glyph,label,sx,sy,tx,ty,rot])=>{
+   const el=document.createElement('div');el.className='flight-item';
+   el.innerHTML='<span class="glyph"></span><span class="item-name"></span>';
+   el.querySelector('.glyph').textContent=glyph;el.querySelector('.item-name').textContent=label;
+   const horizontal=Math.min(width*.92,1000),vertical=Math.min(height*.82,610);
+   el.style.setProperty('--sx',sx*horizontal+'px');el.style.setProperty('--sy',sy*vertical+'px');
+   el.style.setProperty('--tx',tx*horizontal+'px');el.style.setProperty('--ty',ty*vertical+'px');
+   el.style.setProperty('--rot',rot+'deg');el.style.transitionDelay=(Math.abs(sx)*.3)+'s';
+   frag.appendChild(el);
+  });layer.replaceChildren(frag);
+ }
+ function enter(){
+  if(started)return;started=true;door.setAttribute('aria-disabled','true');
+  stage.dataset.phase='opening';
+  if(reduced){stage.dataset.phase='complete';reveal.removeAttribute('aria-hidden');return;}
+  window.setTimeout(()=>{stage.dataset.phase='scatter';},1050);
+  window.setTimeout(()=>{stage.dataset.phase='organize';},3100);
+  window.setTimeout(()=>{stage.dataset.phase='complete';reveal.removeAttribute('aria-hidden');},5250);
+ }
+ door.addEventListener('click',enter);
+ door.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();enter();}});
+ cue.addEventListener('click',enter);
+ makeObjects();window.addEventListener('resize',()=>{if(!started)makeObjects();},{passive:true});
+ const menu=document.getElementById('menuButton'),links=document.getElementById('navLinks');
+ menu.addEventListener('click',()=>{const open=links.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
+ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false');}));
+ document.getElementById('year').textContent=new Date().getFullYear();
+ const rises=document.querySelectorAll('.rise');
+ if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.12});rises.forEach(el=>observer.observe(el));}else rises.forEach(el=>el.classList.add('visible'));
+})();
+</script>
+</body></html>
