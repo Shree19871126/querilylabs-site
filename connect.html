@@ -86,7 +86,10 @@ body.embedded .card { width:100%; border:0; border-radius:0; box-shadow:none; }
     if (!name || !email || !message) return;
     const subject = `Querily Labs — ${topic}`;
     const body = `Name: ${name}\nEmail: ${email}\nInquiry: ${topic}\n\n${message}`;
-    window.location.href = `mailto:contact@querilylabs.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoUrl =
+  `mailto:contact@querilylabs.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+window.top.location.href = mailtoUrl;
   });
 })();
 </script>
