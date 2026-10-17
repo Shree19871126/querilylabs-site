@@ -22,6 +22,13 @@ h1 { font:600 clamp(27px,5vw,35px)/1.1 'Space Grotesk',sans-serif; letter-spacin
 .close { flex:none; width:36px; height:36px; border:1px solid #a88de966; background:#221a32; color:#fff; border-radius:50%; font-size:24px; cursor:pointer; }
 .close:hover { background:#5e17eb; }
 form { display:grid; gap:14px; }
+.honeypot { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.turnstile-box { min-height:66px; }
+.form-status { margin:0; min-height:18px; color:#c9b9f6; font-size:12px; line-height:1.55; }
+.form-status[data-state="error"] { color:#ffb6bb; }
+.form-status[data-state="success"] { color:#b7f3d0; }
+.submit:disabled { cursor:not-allowed; opacity:.55; }
+
 label { display:grid; gap:7px; color:#e6dcfa; font-size:12px; font-weight:700; }
 input,select,textarea { width:100%; border:1px solid #9e81d75e; border-radius:11px; padding:12px 13px; background:#191727; color:#fff; font:400 13px 'DM Sans',sans-serif; }
 input::placeholder,textarea::placeholder { color:#a99dbd; }
@@ -48,7 +55,8 @@ body.embedded .card { width:100%; border:0; border-radius:0; box-shadow:none; }
     <button type="button" class="close" id="closeDialog" aria-label="Close contact dialog">×</button>
   </div>
   <p class="description">Pilots, ideas, research or partnerships. Tell us what you have in mind.</p>
-  <form id="contactForm">
+  <form id="contactForm" novalidate>
+    <div class="honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
     <label>I'm reaching out about
       <select name="topic" required>
         <option value="Request a demo">Request a demo</option>
@@ -59,13 +67,23 @@ body.embedded .card { width:100%; border:0; border-radius:0; box-shadow:none; }
     </label>
     <label>Your name<input name="name" autocomplete="name" placeholder="Your name" maxlength="120" required></label>
     <label>Your email<input name="email" type="email" autocomplete="email" placeholder="you@organization.com" maxlength="254" required></label>
-    <label>Your message<textarea name="message" placeholder="A little about your inquiry..." maxlength="4000" required></textarea></label>
-    <button type="submit" class="submit">Continue to email ↗</button>
-    <p class="note">Opens an email draft in your mail app. No message is sent automatically. Or email <a href="mailto:contact@querilylabs.com">contact@querilylabs.com</a>.</p>
+    <label>Your message<textarea name="message" placeholder="A little about your inquiry..." minlength="10" maxlength="4000" required></textarea></label>
+    <div id="turnstileWidget" class="turnstile-box" aria-label="Spam prevention check"></div>
+    <button type="submit" class="submit" id="sendButton">Send message ↗</button>
+    <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+    <p class="note">Your message will be submitted securely to Querily Labs. Or email <a href="mailto:contact@querilylabs.com">contact@querilylabs.com</a>.</p>
   </form>
 </main>
 <script>
+/* Public configuration only. NEVER put Resend, Turnstile secret, or Supabase service-role keys here. */
+window.QUERILY_CONTACT_CONFIG = {
+  endpoint: 'https://rfpzjaygjewojjqzqoop.supabase.co/functions/v1/contact-submit',
+  turnstileSiteKey: '0x4AAAAAAFZKS1CFK-yqzQ4-'
+};
+
 (() => {
+  'use strict';
+  const config = window.QUERILY_CONTACT_CONFIG;
   const params = new URLSearchParams(window.location.search);
   const embedded = params.get('embed') === '1' && window.parent !== window;
   if (embedded) document.body.classList.add('embedded');
@@ -74,24 +92,78 @@ body.embedded .card { width:100%; border:0; border-radius:0; box-shadow:none; }
     else window.location.href = 'people.html#connect';
   };
   document.getElementById('closeDialog').addEventListener('click', close);
-  document.getElementById('contactForm').addEventListener('submit', event => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.reportValidity()) return;
-    const data = new FormData(form);
-    const topic = String(data.get('topic') || 'General inquiry');
-    const name = String(data.get('name') || '').trim();
-    const email = String(data.get('email') || '').trim();
-    const message = String(data.get('message') || '').trim();
-    if (!name || !email || !message) return;
-    const subject = `Querily Labs — ${topic}`;
-    const body = `Name: ${name}\nEmail: ${email}\nInquiry: ${topic}\n\n${message}`;
-    const mailtoUrl =
-  `mailto:contact@querilylabs.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-window.top.location.href = mailtoUrl;
+  const form = document.getElementById('contactForm');
+  const button = document.getElementById('sendButton');
+  const status = document.getElementById('formStatus');
+  let turnstileToken = '';
+  let widgetId = null;
+  const setStatus = (message, state = '') => {
+    status.textContent = message;
+    status.dataset.state = state;
+  };
+  const configured = config.endpoint.startsWith('https://') &&
+    config.turnstileSiteKey && !config.turnstileSiteKey.startsWith('REPLACE_');
+  if (!configured) {
+    button.disabled = true;
+    setStatus('Contact form setup is in progress. Please email us directly.', 'error');
+  }
+
+  // Cloudflare's callback is invoked after its public widget script loads.
+  window.onQuerilyTurnstileReady = () => {
+    if (!configured || !window.turnstile) return;
+    widgetId = window.turnstile.render('#turnstileWidget', {
+      sitekey: config.turnstileSiteKey,
+      callback: token => { turnstileToken = token; },
+      'expired-callback': () => { turnstileToken = ''; },
+      'error-callback': () => { turnstileToken = ''; setStatus('Security check unavailable. Please retry.', 'error'); }
+    });
+  };
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (!form.reportValidity() || !configured) return;
+    if (!turnstileToken) {
+      setStatus('Please complete the security check before sending.', 'error');
+      return;
+    }
+    const data = new FormData(form);
+    const payload = {
+      topic: String(data.get('topic') || ''),
+      name: String(data.get('name') || '').trim(),
+      email: String(data.get('email') || '').trim(),
+      message: String(data.get('message') || '').trim(),
+      website: String(data.get('website') || ''),
+      turnstileToken
+    };
+    button.disabled = true;
+    button.textContent = 'Sending…';
+    setStatus('Submitting your message securely…');
+    try {
+      const result = await fetch(config.endpoint, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-store',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const json = await result.json().catch(() => ({}));
+      if (!result.ok || !json.ok) {
+        throw new Error(json.error || 'Unable to submit right now. Please try again.');
+      }
+      form.reset();
+      setStatus('Message submitted successfully. Thank you for reaching out.', 'success');
+    } catch (error) {
+      setStatus(error.message || 'Unable to submit right now. Please try again.', 'error');
+    } finally {
+      turnstileToken = '';
+      if (window.turnstile && widgetId !== null) window.turnstile.reset(widgetId);
+      button.disabled = !configured;
+      button.textContent = 'Send message ↗';
+    }
   });
 })();
 </script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onQuerilyTurnstileReady&amp;render=explicit" async defer></script>
 </body>
 </html>
